@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Visão Arquitetural</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        /* Grid Background */
+        .bg-grid {
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Flow Chart Styles */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 40px 0;
+            width: 100%;
+        }
+        
+        .flow-box {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 24px 20px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .flow-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .flow-box.active {
+            border-color: #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+        }
+
+        .flow-box.secondary {
+            border-color: #00d9ff;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+        }
+
+        .flow-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        /* Connecting Lines */
+        .connector {
+            flex: 1;
+            height: 2px;
+            background: #333;
+            position: relative;
+            margin: 0 15px;
+        }
+        
+        .connector::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: -4px;
+            width: 0; 
+            height: 0; 
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #333;
+        }
+        
+        .connector.active {
+            background: linear-gradient(90deg, #00ff41, #00d9ff);
+        }
+        
+        .connector.active::after {
+             border-left-color: #00d9ff;
+        }
+
+        /* Tech Specs List */
+        .spec-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid #333;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s;
+        }
+        
+        .spec-item:hover {
+            border-left-color: #00ff41;
+            background: rgba(0, 255, 65, 0.05);
+            padding-left: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 bg-grid">
+<!-- Header -->
+<div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
+<i class="fas fa-layer-group mr-2"></i>System Architecture
+                    </span>
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    Visão <span class="text-[#00ff41]">Arquitetural</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    CORE::RUST // UI::TAURI // PROVIDERS::MODULAR
+                </p>
+</div>
+</div>
+<!-- Content Split -->
+<div class="flex flex-1 gap-12 items-start h-full">
+<!-- Left Panel: Specs -->
+<div class="w-1/3 flex flex-col justify-center h-full space-y-2">
+<div class="spec-item">
+<div class="w-12 h-12 flex items-center justify-center bg-[#1a1a1a] rounded mr-4 text-[#00ff41]">
+<i class="fab fa-rust text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Rust Core</h3>
+<p class="text-gray-400 text-xs mt-1">Alta performance e memory safety</p>
+</div>
+</div>
+<div class="spec-item">
+<div class="w-12 h-12 flex items-center justify-center bg-[#1a1a1a] rounded mr-4 text-[#00d9ff]">
+<i class="fas fa-server text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Daemon HTTP</h3>
+<p class="text-gray-400 text-xs mt-1">Axum + Tokio (Async Runtime)</p>
+</div>
+</div>
+<div class="spec-item">
+<div class="w-12 h-12 flex items-center justify-center bg-[#1a1a1a] rounded mr-4 text-[#00ff41]">
+<i class="fas fa-puzzle-piece text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">Sistema Modular</h3>
+<p class="text-gray-400 text-xs mt-1">Arquitetura baseada em Providers</p>
+</div>
+</div>
+<div class="spec-item">
+<div class="w-12 h-12 flex items-center justify-center bg-[#1a1a1a] rounded mr-4 text-white">
+<i class="fas fa-desktop text-2xl"></i>
+</div>
+<div>
+<h3 class="text-white font-bold text-lg">UI Desktop</h3>
+<p class="text-gray-400 text-xs mt-1">Tauri (Webview nativa leve)</p>
+</div>
+</div>
+</div>
+<!-- Right Panel: Diagram -->
+<div class="w-2/3 h-full flex flex-col items-center justify-center bg-[#0a0a0a] rounded-xl border border-[#222] relative overflow-hidden p-8 shadow-2xl">
+<!-- Background decorative for diagram -->
+<div class="absolute inset-0 opacity-30 pointer-events-none">
+<svg height="100%" width="100%">
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#222" stroke-width="1"></path>
+</pattern>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- The Flow Diagram -->
+<div class="relative z-10 w-full">
+<div class="flow-container">
+<!-- Step 1: UI -->
+<div class="flow-box">
+<i class="fas fa-desktop flow-icon text-white"></i>
+<h4 class="text-white font-bold mb-1">UI Client</h4>
+<p class="text-[#00d9ff] text-[10px] tech-font">TAURI / JS</p>
+<div class="absolute -bottom-8 text-gray-600 text-[10px] tech-font tracking-widest">FRONTEND</div>
+</div>
+<!-- Connector -->
+<div class="connector active">
+<div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-gray-500 text-[9px] bg-[#0a0a0a] px-2 py-0.5 rounded border border-[#333] tech-font">JSON/HTTP</div>
+</div>
+<!-- Step 2: Daemon -->
+<div class="flow-box active">
+<i class="fas fa-cogs flow-icon text-[#00ff41]"></i>
+<h4 class="text-white font-bold mb-1">Daemon Core</h4>
+<p class="text-[#00ff41] text-[10px] tech-font">RUST / AXUM</p>
+<div class="absolute -bottom-8 text-gray-600 text-[10px] tech-font tracking-widest">MIDDLEWARE</div>
+</div>
+<!-- Connector -->
+<div class="connector active">
+<div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-gray-500 text-[9px] bg-[#0a0a0a] px-2 py-0.5 rounded border border-[#333] tech-font">TRAIT/IMPL</div>
+</div>
+<!-- Step 3: Providers/Backends -->
+<div class="flow-box secondary" style="width: 260px;">
+<i class="fas fa-microchip flow-icon text-[#00d9ff]"></i>
+<h4 class="text-white font-bold mb-2">Providers</h4>
+<div class="flex gap-2 w-full justify-center">
+<span class="bg-[#1a1a1a] text-gray-300 text-[9px] px-2 py-1 rounded border border-[#333] flex-1 text-center">MLX</span>
+<span class="bg-[#1a1a1a] text-gray-300 text-[9px] px-2 py-1 rounded border border-[#333] flex-1 text-center">Llama</span>
+<span class="bg-[#1a1a1a] text-gray-300 text-[9px] px-2 py-1 rounded border border-[#333] flex-1 text-center">Ollama</span>
+</div>
+<div class="absolute -bottom-8 text-gray-600 text-[10px] tech-font tracking-widest">INFERENCE</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-6 left-12 right-12 flex justify-between items-center text-xs text-gray-600 tech-font">
+<div>MODULAR_ARCH_V1.0</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#00ff41] animate-pulse"></div>
+                SYSTEM ONLINE
+            </div>
+</div>
+</div>
+</body>
+</html>

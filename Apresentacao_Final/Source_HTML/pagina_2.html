@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Problema</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .text-neon-green { color: #00ff41; }
+        .text-neon-blue { color: #00d9ff; }
+        .bg-neon-green { background-color: #00ff41; }
+        .bg-neon-blue { background-color: #00d9ff; }
+        .border-neon-green { border-color: #00ff41; }
+
+        .bg-pattern {
+            background-color: #080808;
+            background-image: 
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .problem-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #333;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: #444;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .problem-card:hover::before {
+            background: #00ff41; 
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        .problem-card:nth-child(even):hover::before {
+            background: #00d9ff;
+            box-shadow: 0 0 10px #00d9ff;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 60%);
+        }
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 bg-pattern">
+<!-- Header -->
+<div class="relative z-10 mb-12 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase">
+<i class="fas fa-exclamation-triangle mr-2"></i>Contexto Atual
+                    </span>
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    O Problema da <span class="text-gray-500">IA Centralizada</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed">
+                    Desafios técnicos e econômicos que motivaram o desenvolvimento da arquitetura local-first.
+                </p>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="relative z-10 flex-1 grid grid-cols-2 gap-8">
+<!-- Card 1 -->
+<div class="problem-card p-8 rounded-lg flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00ff41]">
+<i class="fas fa-cloud-showers-heavy"></i>
+</div>
+<span class="tech-font text-xs text-gray-600">ERR_DEPENDENCY</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Dependência Excessiva</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Acesso a LLMs restrito a APIs proprietárias (OpenAI, Anthropic), criando "vendor lock-in" e vulnerabilidade a instabilidades de serviço externo.
+                    </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="problem-card p-8 rounded-lg flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00d9ff]">
+<i class="fas fa-chart-line"></i>
+</div>
+<span class="tech-font text-xs text-gray-600">ERR_HIGH_COST</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Custos Elevados</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Modelos de cobrança por token tornam inviável a experimentação acadêmica em larga escala e o uso contínuo em aplicações intensivas.
+                    </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="problem-card p-8 rounded-lg flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00ff41]">
+<i class="fas fa-user-shield"></i>
+</div>
+<span class="tech-font text-xs text-gray-600">ERR_PRIVACY</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Privacidade e Controle</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Envio obrigatório de dados sensíveis para servidores de terceiros (Black Box), impossibilitando o uso em contextos de sigilo ou dados médicos/pessoais.
+                    </p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="problem-card p-8 rounded-lg flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00d9ff]">
+<i class="fas fa-microchip"></i>
+</div>
+<span class="tech-font text-xs text-gray-600">ERR_NO_HARDWARE</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Experimentação Limitada</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Dificuldade em testar arquiteturas customizadas, quantizações específicas (GGUF/AWQ) e otimizações de hardware local sem ferramentas adequadas.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Footer Decoration -->
+<div class="absolute bottom-12 right-12 z-0 opacity-20">
+<i class="fas fa-bug text-9xl text-gray-800"></i>
+</div>
+<!-- Footer Info -->
+<div class="relative z-10 mt-8 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4">
+<p>DIAGNOSTIC_REPORT // 2026</p>
+<p>STATUS: CRITICAL</p>
+</div>
+</div>
+</body>
+</html>

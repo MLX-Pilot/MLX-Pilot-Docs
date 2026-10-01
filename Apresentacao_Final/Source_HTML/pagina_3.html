@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Proposta</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .text-neon-green { color: #00ff41; }
+        .text-neon-blue { color: #00d9ff; }
+        
+        .card-container {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .proposal-card {
+            background-color: #111111;
+            border: 1px solid #333;
+            border-top: 4px solid #333;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            position: relative;
+        }
+
+        .proposal-card:nth-child(1) { border-top-color: #00ff41; }
+        .proposal-card:nth-child(2) { border-top-color: #00d9ff; }
+        .proposal-card:nth-child(3) { border-top-color: #00ff41; }
+        .proposal-card:nth-child(4) { border-top-color: #00d9ff; }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 40px;
+            font-weight: 900;
+            opacity: 0.1;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Tech background lines */
+        .bg-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 z-10">
+<!-- Background Elements -->
+<div class="bg-lines">
+<svg fill="none" height="720" viewbox="0 0 1280 720" width="1280" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#333" stroke-width="1" x1="50" x2="50" y1="0" y2="720"></line>
+<line stroke="#333" stroke-width="1" x1="1230" x2="1230" y1="0" y2="720"></line>
+<line stroke="#333" stroke-width="1" x1="0" x2="1280" y1="120" y2="120"></line>
+<rect fill="#00ff41" height="10" width="10" x="45" y="115"></rect>
+<rect fill="#00d9ff" height="10" width="10" x="1225" y="115"></rect>
+</svg>
+</div>
+<!-- Header -->
+<div class="relative z-20 mb-10 mt-4 flex justify-between items-end">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-1 bg-[#222] text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase border border-[#00ff41]">
+                    Solution_Overview
+                </span>
+</div>
+<h1 class="text-5xl font-black text-white tracking-tight uppercase">
+                A Proposta <span class="text-[#00d9ff]">MLX-Pilot</span>
+</h1>
+</div>
+<div class="max-w-xl text-right">
+<p class="text-gray-300 text-lg font-light leading-relaxed border-l-2 border-[#00ff41] pl-4">
+                Uma plataforma desktop <span class="text-white font-bold">Local-First</span> projetada para devolver o controle, reduzir custos e habilitar a pesquisa avançada em IA.
+            </p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="flex-1 card-container z-20">
+<!-- Card 1 -->
+<div class="proposal-card group">
+<span class="card-number">01</span>
+<div class="icon-wrapper group-hover:bg-[#00ff41] transition-colors duration-300">
+<i class="fas fa-server text-2xl text-[#00ff41] group-hover:text-black transition-colors duration-300"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-3 uppercase tracking-wide">Execução Local</h3>
+<p class="text-gray-400 text-sm leading-relaxed flex-1">
+                Capacidade de rodar LLMs (Llama 3, Mistral, Gemma) diretamente no hardware do usuário, garantindo privacidade total dos dados e zero latência de rede.
+            </p>
+<div class="mt-4 pt-4 border-t border-[#222]">
+<p class="text-[10px] text-gray-500 tech-font">STATUS: OFFLINE-READY</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="proposal-card group">
+<span class="card-number">02</span>
+<div class="icon-wrapper group-hover:bg-[#00d9ff] transition-colors duration-300">
+<i class="fas fa-network-wired text-2xl text-[#00d9ff] group-hover:text-black transition-colors duration-300"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-3 uppercase tracking-wide">Multi-Backend</h3>
+<p class="text-gray-400 text-sm leading-relaxed flex-1">
+                Arquitetura agnóstica que unifica <strong>MLX</strong>, <strong>llama.cpp</strong> e <strong>Ollama</strong> sob uma única interface e API, permitindo flexibilidade total de infraestrutura.
+            </p>
+<div class="mt-4 pt-4 border-t border-[#222]">
+<p class="text-[10px] text-gray-500 tech-font">STATUS: UNIFIED_API</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="proposal-card group">
+<span class="card-number">03</span>
+<div class="icon-wrapper group-hover:bg-[#00ff41] transition-colors duration-300">
+<i class="fas fa-flask text-2xl text-[#00ff41] group-hover:text-black transition-colors duration-300"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-3 uppercase tracking-wide">Experimentação</h3>
+<p class="text-gray-400 text-sm leading-relaxed flex-1">
+                Sandbox controlado para estudantes e pesquisadores testarem hiperparâmetros, quantizações e arquiteturas de modelos sem custos de API.
+            </p>
+<div class="mt-4 pt-4 border-t border-[#222]">
+<p class="text-[10px] text-gray-500 tech-font">STATUS: ACADEMIC_MODE</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="proposal-card group">
+<span class="card-number">04</span>
+<div class="icon-wrapper group-hover:bg-[#00d9ff] transition-colors duration-300">
+<i class="fas fa-microchip text-2xl text-[#00d9ff] group-hover:text-black transition-colors duration-300"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-3 uppercase tracking-wide">Laboratório Prático</h3>
+<p class="text-gray-400 text-sm leading-relaxed flex-1">
+                Transforma qualquer computador com GPU/NPU em uma estação de trabalho de IA, servindo como base para disciplinas de Computação e TCCs.
+            </p>
+<div class="mt-4 pt-4 border-t border-[#222]">
+<p class="text-[10px] text-gray-500 tech-font">STATUS: LAB_INSTALLED</p>
+</div>
+</div>
+</div>
+<!-- Footer Status -->
+<div class="mt-8 pt-4 border-t border-gray-900 flex justify-between items-center tech-font text-xs text-gray-600">
+<p>SYSTEM ARCHITECTURE // LOCAL-FIRST</p>
+<p>POWERED BY RUST + TAURI</p>
+</div>
+</div>
+</body>
+</html>

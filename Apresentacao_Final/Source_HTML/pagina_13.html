@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Impacto Acadêmico</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        font-family: 'Montserrat', sans-serif;
+        background-color: #050505;
+        color: #ffffff;
+    }
+    
+    .tech-font {
+        font-family: 'Roboto Mono', monospace;
+    }
+
+    /* SVG Pattern Background - No Gradients */
+    .bg-pattern {
+        background-color: #050505;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM22.485 0l.83.828-1.415 1.415L19.657 0h2.828zM0 22.485l.828.83 1.415-1.415L0 19.658v2.827zM0 54.627l.828.83 1.415-1.415L0 51.8v2.827zM57.456 0l2.544 2.544V0h-2.544zM25.314 0l2.544 2.544V0h-2.544zM0 25.314l2.544 2.544H0v-2.544zM0 57.456l2.544 2.544H0v-2.544zM27.858 31.858l.828.83-1.415 1.415-2.242-2.243h2.829zM31.858 27.858l.83.828-1.415 1.415-2.243-2.242h2.828z' fill='%23151515' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 24px;
+        height: 100%;
+    }
+
+    .impact-card {
+        background-color: #0a0a0a;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 24px;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .impact-card:hover {
+        background-color: #111;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Accent border on left */
+    .impact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: #333;
+        transition: background-color 0.3s ease;
+    }
+
+    .impact-card:hover::before {
+        background-color: var(--card-accent);
+    }
+
+    .icon-container {
+        min-width: 64px;
+        height: 64px;
+        background-color: #161616;
+        border: 1px solid #333;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        color: #555;
+        transition: all 0.3s ease;
+    }
+
+    .impact-card:hover .icon-container {
+        color: var(--card-accent);
+        border-color: var(--card-accent);
+        background-color: rgba(255, 255, 255, 0.02);
+        box-shadow: 0 0 15px var(--card-glow);
+    }
+
+    /* Accent Definitions */
+    .accent-green {
+        --card-accent: #00ff41;
+        --card-glow: rgba(0, 255, 65, 0.15);
+    }
+
+    .accent-blue {
+        --card-accent: #00d9ff;
+        --card-glow: rgba(0, 217, 255, 0.15);
+    }
+
+    .stat-badge {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-size: 10px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background-color: #161616;
+        border: 1px solid #333;
+        color: #666;
+        font-family: 'Roboto Mono', monospace;
+        letter-spacing: 0.5px;
+    }
+    
+    .impact-card:hover .stat-badge {
+        border-color: var(--card-accent);
+        color: var(--card-accent);
+        background-color: rgba(0,0,0,0.5);
+    }
+
+</style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 bg-pattern">
+<!-- Header -->
+<div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase border border-[#00ff41] px-2 py-1 rounded bg-black bg-opacity-50">
+<i class="fas fa-university mr-2"></i>Institutional Value
+                    </span>
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    Impacto <span class="text-gray-500">Acadêmico</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    EDUCATION // RESEARCH // INNOVATION
+                </p>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="flex-1 card-grid z-10">
+<!-- Card 1: Lab Prático -->
+<div class="impact-card accent-green">
+<div class="stat-badge">REQ: GPU/CPU</div>
+<div class="icon-container">
+<i class="fas fa-laptop-code"></i>
+</div>
+<div class="flex flex-col justify-center pr-12">
+<h3 class="text-xl font-bold text-white mb-2">Laboratório Prático de IA</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Ambiente controlado para alunos experimentarem com LLMs sem custos de nuvem. Permite "botar a mão na massa" com inferência, prompts e fine-tuning básico.
+                    </p>
+</div>
+</div>
+<!-- Card 2: Base TCC -->
+<div class="impact-card accent-blue">
+<div class="stat-badge">DOCS: READY</div>
+<div class="icon-container">
+<i class="fas fa-graduation-cap"></i>
+</div>
+<div class="flex flex-col justify-center pr-12">
+<h3 class="text-xl font-bold text-white mb-2">Base para TCCs</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Framework extensível que serve de ponto de partida para monografias. Alunos podem focar em desenvolver novos plugins ou agentes ao invés de configurar infraestrutura.
+                    </p>
+</div>
+</div>
+<!-- Card 3: Disciplinas Futuras -->
+<div class="impact-card accent-blue">
+<div class="stat-badge">COURSE: AI_101</div>
+<div class="icon-container">
+<i class="fas fa-chalkboard-teacher"></i>
+</div>
+<div class="flex flex-col justify-center pr-12">
+<h3 class="text-xl font-bold text-white mb-2">Uso em Disciplinas</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Ferramenta didática para aulas de Inteligência Artificial, Sistemas Distribuídos e Compiladores, demonstrando conceitos teóricos na prática.
+                    </p>
+</div>
+</div>
+<!-- Card 4: Experimentação Institucional -->
+<div class="impact-card accent-green">
+<div class="stat-badge">SCOPE: CAMPUS</div>
+<div class="icon-container">
+<i class="fas fa-sitemap"></i>
+</div>
+<div class="flex flex-col justify-center pr-12">
+<h3 class="text-xl font-bold text-white mb-2">Plataforma Institucional</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                        Hub centralizado para pesquisa e desenvolvimento dentro da universidade, fomentando grupos de estudo e parcerias com empresas (ex: NVIDIA).
+                    </p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
+<div class="flex items-center gap-4">
+<span><i class="fas fa-check-circle text-[#00ff41] mr-1"></i> HIGH_IMPACT</span>
+<span><i class="fas fa-check-circle text-[#00d9ff] mr-1"></i> SCALABLE</span>
+</div>
+<div>
+                MLX-PILOT // ACADEMIC_LICENSE_MIT
+            </div>
+</div>
+</div>
+</body>
+</html>

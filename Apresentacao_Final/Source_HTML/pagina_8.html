@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Objetivos Acadêmicos</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* SVG Background Pattern to replace gradients */
+        .bg-tech-grid {
+            background-color: #050505;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM22.485 0l.83.828-1.415 1.415L19.657 0h2.828zM0 22.485l.828.83 1.415-1.415L0 19.658v2.827zM0 54.627l.828.83 1.415-1.415L0 51.8v2.827zM57.456 0l2.544 2.544V0h-2.544zM25.314 0l2.544 2.544V0h-2.544zM0 25.314l2.544 2.544H0v-2.544zM0 57.456l2.544 2.544H0v-2.544zM27.858 31.858l.828.83-1.415 1.415-2.242-2.243h2.829zM31.858 27.858l.83.828-1.415 1.415-2.243-2.242h2.828z' fill='%23222' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        .objective-card {
+            background-color: #0f0f0f;
+            border: 1px solid #222;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 24px 20px;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .objective-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+            background-color: #141414;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .objective-card:hover::after {
+            background-color: var(--accent-color);
+        }
+
+        .objective-card:hover .icon-circle {
+            background-color: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-shadow);
+        }
+
+        .icon-circle {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: #1a1a1a;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        /* Accent Colors */
+        .accent-green { --accent-color: #00ff41; --accent-shadow: rgba(0, 255, 65, 0.4); }
+        .accent-blue { --accent-color: #00d9ff; --accent-shadow: rgba(0, 217, 255, 0.4); }
+        .accent-white { --accent-color: #ffffff; --accent-shadow: rgba(255, 255, 255, 0.4); }
+
+        .number-tag {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 40px;
+            font-weight: 900;
+            color: #222;
+            font-family: 'Roboto Mono', monospace;
+            z-index: 0;
+            opacity: 0.5;
+            transition: color 0.3s;
+        }
+
+        .objective-card:hover .number-tag {
+            color: #333;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Specific positioning for layout variety */
+        .grid-item-1 { grid-column: 1; grid-row: 1; }
+        .grid-item-2 { grid-column: 2; grid-row: 1; }
+        .grid-item-3 { grid-column: 3; grid-row: 1; }
+        /* Centered bottom row items */
+        .grid-item-4 { grid-column: 1 / span 1.5; grid-row: 2; transform: translateX(50%); width: 100%; } /* Using transform to center isn't ideal for grid. Let's adjust grid */
+        
+        /* Revised Grid for 5 items: 3 top, 2 bottom centered-ish */
+        .custom-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 24px;
+            padding-bottom: 20px;
+        }
+
+        .cell-top { grid-column: span 2; }
+        .cell-bottom-1 { grid-column: 2 / span 2; }
+        .cell-bottom-2 { grid-column: 4 / span 2; }
+
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 bg-tech-grid">
+<!-- Header -->
+<div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase px-2 py-1 border border-[#00ff41] bg-[#00ff41] bg-opacity-10 rounded">
+<i class="fas fa-university mr-2"></i>Academic Goals
+                    </span>
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    Objetivo <span class="text-gray-500">Acadêmico</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    RESEARCH_FOCUS // EXPERIMENTATION // BENCHMARK
+                </p>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="flex-1 custom-grid z-10">
+<!-- Objective 1 -->
+<div class="cell-top">
+<div class="objective-card accent-green">
+<span class="number-tag">01</span>
+<div class="icon-circle">
+<i class="fas fa-cubes"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Arquitetura Modular</h3>
+<p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Estudo aprofundado sobre desacoplamento de sistemas, separando interface (Tauri) do controle lógico (Rust) e inferência.
+                    </p>
+</div>
+</div>
+<!-- Objective 2 -->
+<div class="cell-top">
+<div class="objective-card accent-blue">
+<span class="number-tag">02</span>
+<div class="icon-circle">
+<i class="fas fa-network-wired"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Local vs Remoto</h3>
+<p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Análise comparativa crítica entre execução local (privacidade, latência zero) e nuvem (custo, escalabilidade).
+                    </p>
+</div>
+</div>
+<!-- Objective 3 -->
+<div class="cell-top">
+<div class="objective-card accent-green">
+<span class="number-tag">03</span>
+<div class="icon-circle">
+<i class="fas fa-tachometer-alt"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Benchmark</h3>
+<p class="text-gray-400 text-sm leading-relaxed px-2">
+                        Coleta sistemática de métricas de performance: Tokens por segundo (TPS), Tempo para o primeiro token (TTFT) e uso de memória.
+                    </p>
+</div>
+</div>
+<!-- Objective 4 -->
+<div class="cell-bottom-1">
+<div class="objective-card accent-white">
+<span class="number-tag">04</span>
+<div class="icon-circle">
+<i class="fas fa-fire-alt"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Stress Test GPU</h3>
+<p class="text-gray-400 text-sm leading-relaxed px-4">
+                        Avaliação de limites de hardware com modelos massivos (7B+), monitorando temperatura, consumo energético e gargalos de VRAM.
+                    </p>
+</div>
+</div>
+<!-- Objective 5 -->
+<div class="cell-bottom-2">
+<div class="objective-card accent-blue">
+<span class="number-tag">05</span>
+<div class="icon-circle">
+<i class="fas fa-flask"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Base de Pesquisa</h3>
+<p class="text-gray-400 text-sm leading-relaxed px-4">
+                        Criação de uma plataforma estável e documentada para servir como fundação para futuros Trabalhos de Conclusão de Curso (TCC).
+                    </p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
+<div>
+<span>STATUS: IN_PROGRESS</span>
+<span class="mx-2">|</span>
+<span>PI_III_OBJECTIVES</span>
+</div>
+<div>
+<i class="fas fa-check-circle text-[#00ff41] mr-1"></i> ACADEMIC_VALIDATION
+            </div>
+</div>
+</div>
+</body>
+</html>
