@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MLX-Pilot - Contato e Repositório</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Solid Pattern Background (No Gradients) */
+        .bg-tech-pattern {
+            background-color: #050505;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23111' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Cards */
+        .content-card {
+            background-color: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            border-color: #444;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Repository Card Specifics */
+        .repo-card {
+            border-left: 4px solid #00ff41;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .repo-card:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        /* Team Card Specifics */
+        .team-card {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .team-card:hover {
+            background-color: #141414;
+            border-color: #00d9ff;
+            transform: translateX(5px);
+        }
+
+        /* Buttons & Badges */
+        .btn-tech {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #111;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-tech:hover {
+            background-color: #00ff41;
+            color: #000;
+            border-color: #00ff41;
+        }
+
+        .stat-box {
+            background-color: #111;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #222;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Avatar Placeholders */
+        .avatar-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .team-card:hover .avatar-circle {
+            border-color: #00d9ff;
+            color: #00d9ff;
+        }
+
+        /* QR Placeholder */
+        .qr-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-inner {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 10h30v30h-30zM60 10h30v30h-30zM10 60h30v30h-30zM50 50h10v10h-10zM70 70h10v10h-10z' fill='%23000'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 10h30v30h-30zM60 10h30v30h-30zM10 60h30v30h-30zM50 50h10v10h-10zM70 70h10v10h-10z' fill='%23000'/%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+        }
+    </style>
+</head>
+
+<body class="bg-tech-pattern">
+    <!-- Container -->
+    <div class="flex-1 flex flex-col px-12 pt-8 pb-32 relative z-10">
+        <!-- Header -->
+        <div class="mb-10 flex justify-between items-end border-b border-gray-800 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase border border-[#00ff41] bg-[#00ff41] bg-opacity-10 px-2 py-1 rounded">
+                        <i class="fab fa-github mr-2"></i>Open Source
+                    </span>
+                </div>
+                <h1 class="text-5xl font-bold text-white tracking-tight">
+                    Contato e <span class="text-gray-500">Repositório</span>
+                </h1>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    JOIN_THE_REVOLUTION // CONTRIBUTE
+                </p>
+                <div class="mt-2 flex justify-end gap-3">
+                    <span class="text-xs text-gray-500 flex items-center"><i
+                            class="fas fa-circle text-[8px] text-[#00ff41] mr-2"></i>Seeking Maintainers</span>
+                    <span class="text-xs text-gray-500 flex items-center"><i
+                            class="fas fa-circle text-[8px] text-[#00d9ff] mr-2"></i>Feedback Welcome</span>
+                </div>
+            </div>
+        </div>
+        <!-- Main Grid -->
+        <div class="flex-1 grid grid-cols-2 gap-12">
+            <!-- Left Column: Repository -->
+            <div class="content-card repo-card">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-4 bg-[#161b22] rounded-lg border border-[#30363d]">
+                            <i class="fab fa-github text-5xl text-white"></i>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-[#00ff41] tech-font font-bold text-xl mb-1">v0.1.0-alpha</span>
+                            <span class="text-gray-500 text-xs uppercase tracking-wide">Latest Release</span>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-2">mlx-pilot/core</h2>
+                    <p class="text-gray-400 mb-6 font-light leading-relaxed">
+                        Repositório oficial do projeto. Acesse o código fonte, documentação técnica, benchmarks e
+                        roadmap detalhado.
+                    </p>
+                    <div class="flex gap-4 mb-4">
+                        <div class="stat-box">
+                            <span class="stat-value">124</span>
+                            <span class="stat-label"><i class="far fa-star mr-1"></i>Stars</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value">32</span>
+                            <span class="stat-label"><i class="fas fa-code-branch mr-1"></i>Forks</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-value">18</span>
+                            <span class="stat-label"><i class="far fa-dot-circle mr-1"></i>Issues</span>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <p class="text-sm text-gray-300 flex items-center tech-font">
+                            <i class="fas fa-chevron-right text-[#00ff41] mr-3 text-xs"></i>
+                            <span class="text-gray-500 mr-2">[DOCS]</span> Architecture Overview
+                        </p>
+                        <p class="text-sm text-gray-300 flex items-center tech-font">
+                            <i class="fas fa-chevron-right text-[#00ff41] mr-3 text-xs"></i>
+                            <span class="text-gray-500 mr-2">[GUIDE]</span> Setting up local environment
+                        </p>
+                        <p class="text-sm text-gray-300 flex items-center tech-font">
+                            <i class="fas fa-chevron-right text-[#00ff41] mr-3 text-xs"></i>
+                            <span class="text-gray-500 mr-2">[CONTRIB]</span> Good first issues
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center pt-6 border-t border-gray-800">
+                    <a class="btn-tech" href="#">
+                        <i class="fab fa-github"></i>
+                        Acessar GitHub
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="text-right">
+                            <p class="text-xs text-gray-400 font-bold mb-1">SCAN FOR MOBILE</p>
+                            <p class="text-[10px] text-gray-600 tech-font">DIRECT_ACCESS</p>
+                        </div>
+                        <div class="qr-placeholder">
+                            <div class="qr-inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Team & Contact -->
+            <div class="flex flex-col h-full">
+                <!-- Team Section -->
+                <div class="mb-4">
+                    <h3
+                        class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4 tech-font pl-1 border-l-2 border-[#00d9ff] ml-1">
+                        Core Team
+                    </h3>
+                    <div class="team-card">
+                        <div class="avatar-circle">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-lg">[Nome do Integrante 1]</p>
+                            <p class="text-[#00d9ff] text-xs tech-font">LEAD_ARCHITECT</p>
+                        </div>
+                        <div class="flex gap-3 text-gray-500">
+                            <i class="fab fa-linkedin hover:text-white cursor-pointer transition"></i>
+                            <i class="fas fa-envelope hover:text-white cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="avatar-circle">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-lg">[Nome do Integrante 2]</p>
+                            <p class="text-[#00d9ff] text-xs tech-font">AI_ENGINEER</p>
+                        </div>
+                        <div class="flex gap-3 text-gray-500">
+                            <i class="fab fa-linkedin hover:text-white cursor-pointer transition"></i>
+                            <i class="fas fa-envelope hover:text-white cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="avatar-circle">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-lg">[Nome do Integrante 3]</p>
+                            <p class="text-[#00d9ff] text-xs tech-font">RUST_DEVELOPER</p>
+                        </div>
+                        <div class="flex gap-3 text-gray-500">
+                            <i class="fab fa-linkedin hover:text-white cursor-pointer transition"></i>
+                            <i class="fas fa-envelope hover:text-white cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="avatar-circle">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-bold text-lg">[Nome do Integrante 4]</p>
+                            <p class="text-[#00d9ff] text-xs tech-font">QA_&amp;_DEVOPS</p>
+                        </div>
+                        <div class="flex gap-3 text-gray-500">
+                            <i class="fab fa-linkedin hover:text-white cursor-pointer transition"></i>
+                            <i class="fas fa-envelope hover:text-white cursor-pointer transition"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Info -->
+                <div
+                    class="flex-1 content-card bg-[#0a0a0a] border-t-4 border-t-[#00d9ff] flex flex-col justify-center">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-white font-bold text-lg">Colaboração Institucional</h3>
+                        <i class="fas fa-handshake text-[#00d9ff] text-2xl"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        Interessado em utilizar o MLX-Pilot em sua disciplina ou pesquisa? Entre em contato para suporte
+                        à implantação no laboratório.
+                    </p>
+                    <div class="flex items-center gap-2 text-sm tech-font text-white">
+                        <i class="fas fa-envelope text-[#00d9ff]"></i>
+                        <span>contato@mlx-pilot.edu.br</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div
+            class="mt-2 pt-2 border-t border-gray-900 flex justify-between items-center text-xs text-gray-600 tech-font">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-balance-scale"></i>
+                    MIT License
+                </span>
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-map-signs"></i>
+                    Roadmap 2026
+                </span>
+            </div>
+            <div>
+                Built with <i class="fas fa-heart text-red-900 mx-1"></i> in Rust &amp; Tauri
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot Capa</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&amp;family=Roboto+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        .neon-green {
+            color: #00ff41;
+        }
+        
+        .neon-blue {
+            color: #00d9ff;
+        }
+
+        .bg-pattern {
+            background-color: #080808;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23151515' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #00ff41;
+        }
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col justify-between p-12 bg-pattern">
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 w-1/2 h-full z-0 opacity-10 pointer-events-none">
+<svg fill="none" height="100%" viewbox="0 0 600 720" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 0 V720" stroke="#00ff41" stroke-width="1"></path>
+<path d="M200 0 V720" stroke="#00ff41" stroke-opacity="0.5" stroke-width="1"></path>
+<path d="M300 0 V720" stroke="#00d9ff" stroke-opacity="0.3" stroke-width="1"></path>
+<rect fill="#00ff41" height="40" width="10" x="95" y="150"></rect>
+<rect fill="#00ff41" height="80" width="10" x="95" y="450"></rect>
+<rect fill="#00ff41" height="20" width="4" x="198" y="300"></rect>
+<rect fill="#00d9ff" height="60" width="4" x="298" y="500"></rect>
+</svg>
+</div>
+<!-- Header -->
+<div class="relative z-10 flex justify-between items-center border-b border-gray-800 pb-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-[#00ff41] flex items-center justify-center rounded">
+<i class="fas fa-terminal text-black text-xl"></i>
+</div>
+<div>
+<p class="text-sm font-bold tracking-[0.2em] text-gray-400 uppercase">Laboratório de IA</p>
+<p class="text-xs text-gray-600 tech-font">SYSTEM_READY</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm text-[#00ff41] tech-font font-bold">PI_IV::V7.0</p>
+<p class="text-xs text-gray-500 uppercase">Ciência da Computação</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 flex-1 flex flex-col justify-center max-w-4xl">
+<div class="mb-6 flex items-center gap-3">
+<span class="px-3 py-1 bg-[#111] border border-[#333] rounded text-[#00d9ff] text-xs font-bold uppercase tracking-wider tech-font">
+<i class="fas fa-circle text-[8px] mr-2"></i>Local-First AI
+                </span>
+<span class="px-3 py-1 bg-[#111] border border-[#333] rounded text-gray-400 text-xs font-bold uppercase tracking-wider tech-font">
+                    Rust Core
+                </span>
+</div>
+<h1 class="text-9xl font-black text-white mb-2 tracking-tighter leading-none" style="text-shadow: 0 0 30px rgba(0,255,65,0.1);">
+                MLX<span class="text-[#00ff41]">.</span>PILOT
+            </h1>
+<div class="h-1 w-24 bg-[#00ff41] mb-8"></div>
+<p class="text-3xl text-gray-300 font-light leading-snug">
+                Plataforma de <span class="text-white font-bold">Execução e Automação</span><br/>
+                de Modelos de Linguagem (LLMs).
+            </p>
+<div class="mt-12 flex gap-8">
+<div class="glass-panel p-4 pr-8 rounded-r-lg">
+<p class="text-[#00ff41] text-xs font-bold uppercase mb-1">Status do Projeto</p>
+<p class="text-white text-lg font-bold">Em Desenvolvimento</p>
+</div>
+<div class="glass-panel p-4 pr-8 rounded-r-lg border-l-4 border-l-[#00d9ff] !border-l-[#00d9ff]">
+<p class="text-[#00d9ff] text-xs font-bold uppercase mb-1">Tecnologia</p>
+<p class="text-white text-lg font-bold">Rust + Tauri + Metal</p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="relative z-10 flex justify-between items-end">
+<div class="flex gap-12">
+<div>
+<p class="text-gray-500 text-xs font-bold uppercase mb-2">Equipe de Desenvolvimento</p>
+<ul class="text-gray-300 text-sm space-y-1 tech-font">
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Kaike Vitorino</li>
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Livia Lemos</li>
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Marcello Augusto</li>
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Gabriel Lima</li>
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Gabriel Salustiano</li>
+<li><span class="text-[#00ff41] mr-2">&gt;</span> Ramon Rocha</li>
+</ul>
+</div>
+</div>
+<div class="text-right">
+<div class="flex items-center justify-end gap-4 opacity-50 mb-2">
+<i class="fab fa-apple text-2xl text-white"></i>
+<i class="fab fa-linux text-2xl text-white"></i>
+<i class="fab fa-windows text-2xl text-white"></i>
+</div>
+<p class="text-gray-600 text-xs uppercase tracking-widest">Powered by Open Source</p>
+</div>
+</div>
+</div>
+</body>
+</html>

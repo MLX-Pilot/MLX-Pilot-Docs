@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MLX-Pilot - Demonstração Funcional</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* SVG Pattern Background to avoid gradients */
+        .bg-pattern {
+            background-color: #050505;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a1a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 16px;
+            height: 100%;
+        }
+
+        .demo-card {
+            background-color: #0f0f0f;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .demo-card:hover {
+            border-color: #333;
+            transform: translateY(-2px);
+            background-color: #111;
+        }
+
+        .demo-card.green-accent:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
+
+        .demo-card.blue-accent:hover {
+            border-color: #00d9ff;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .green-text {
+            color: #00ff41;
+        }
+
+        .blue-text {
+            color: #00d9ff;
+        }
+
+        .bg-green {
+            background-color: #00ff41;
+        }
+
+        .bg-blue {
+            background-color: #00d9ff;
+        }
+
+        .ui-mockup {
+            background-color: #050505;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: auto;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            color: #aaa;
+            position: relative;
+        }
+
+        .ui-mockup::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 30px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        /* Mockup specific styles */
+        .typing-cursor::after {
+            content: '▋';
+            animation: blink 1s step-end infinite;
+            color: #00ff41;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .progress-track {
+            height: 6px;
+            background-color: #222;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            margin-right: 4px;
+            background-color: #222;
+            border: 1px solid #333;
+        }
+
+        .tag-badge.active {
+            background-color: rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+            color: #00ff41;
+        }
+
+        .offline-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #00ff41;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-pattern">
+        <!-- Header -->
+        <div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
+                        <i class="fas fa-play-circle mr-2"></i>Live Demo Features
+                    </span>
+                </div>
+                <h1 class="text-4xl font-bold text-white tracking-tight">
+                    Demonstração <span class="text-gray-500">Funcional</span>
+                </h1>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    CURRENT_BUILD: v0.8.2-alpha
+                </p>
+            </div>
+        </div>
+        <!-- Main Grid Content -->
+        <div class="flex-1 card-grid z-10">
+            <!-- Card 1: Chat Streaming -->
+            <div class="demo-card green-accent">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Chat com Streaming</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">REAL-TIME TOKEN GENERATION</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00ff41]">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Interface de chat responsiva utilizando Server-Sent Events (SSE) para exibir tokens assim que são
+                    inferidos, sem latência perceptível.
+                </p>
+                <div class="ui-mockup border-l-2 border-l-[#00ff41]">
+                    <div class="text-[#00ff41] mb-1">User: Explique Rust em uma frase.</div>
+                    <div class="text-gray-300">
+                        Bot: Rust é uma linguagem de sistemas focada em segurança e concorrência.<span
+                            class="typing-cursor"></span>
+                    </div>
+                    <div class="mt-2 text-[9px] text-gray-600 flex justify-between">
+                        <span>TOK/S: 45.2</span>
+                        <span>LATENCY: 12ms</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2: Download Manager -->
+            <div class="demo-card blue-accent">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Model Manager</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">HUGGING FACE INTEGRATION</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00d9ff]">
+                        <i class="fas fa-cloud-download-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Catálogo integrado para busca e download direto de modelos (GGUF/MLX) com verificação automática de
+                    hash e compatibilidade.
+                </p>
+                <div class="ui-mockup">
+                    <div class="flex justify-between text-white text-[10px] mb-1">
+                        <span>Llama-3-8B-Instruct-v0.2.Q4_K_M.gguf</span>
+                        <span>3.8GB / 5.2GB</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill bg-blue" style="width: 73%;"></div>
+                    </div>
+                    <div class="mt-2 flex justify-between text-[9px] text-gray-500">
+                        <span>SOURCE: HF_HUB</span>
+                        <span class="text-[#00d9ff]">DOWNLOADING...</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3: Backend Switcher -->
+            <div class="demo-card blue-accent">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Seleção de Backend</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">HOT-SWAPPABLE PROVIDERS</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00d9ff]">
+                        <i class="fas fa-toggle-on"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Capacidade de alternar dinamicamente entre motores de inferência (MLX, Llama.cpp, Ollama) sem
+                    reiniciar a aplicação.
+                </p>
+                <div class="ui-mockup">
+                    <div class="mb-2 text-white">Select Provider:</div>
+                    <div class="flex gap-2">
+                        <span class="tag-badge active">MLX (Apple)</span>
+                        <span class="tag-badge">llama.cpp</span>
+                        <span class="tag-badge">Ollama</span>
+                    </div>
+                    <div class="mt-3 text-[9px] text-[#00ff41]">
+                        &gt; Provider switched successfully.<br />
+                        &gt; Loaded 8B parameters in VRAM.
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4: Local Execution -->
+            <div class="demo-card green-accent">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Execução Local</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">PRIVACY &amp; OFFLINE FIRST</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00ff41]">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Ambiente totalmente isolado que garante que nenhum dado do chat ou telemetria deixe a máquina local
+                    do usuário.
+                </p>
+                <div class="ui-mockup">
+                    <div class="flex justify-between items-center">
+                        <span class="text-white">Network Status</span>
+                        <div class="offline-status">
+                            <i class="fas fa-wifi"></i> DISCONNECTED
+                        </div>
+                    </div>
+                    <div class="mt-2 border-t border-[#333] pt-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-[#00ff41]"></div>
+                            <span class="text-white text-[10px]">Local Server: Port 3000</span>
+                        </div>
+                        <div class="text-[9px] text-gray-500 mt-1">0 External Requests Blocked</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div
+            class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
+            <div>
+                SYSTEM STATUS: <span class="text-[#00ff41]">OPERATIONAL</span>
+            </div>
+            <div class="flex gap-4">
+                <span><i class="fab fa-rust mr-1"></i>RUST</span>
+                <span><i class="fab fa-js mr-1"></i>TAURI</span>
+                <span><i class="fab fa-apple mr-1"></i>METAL</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

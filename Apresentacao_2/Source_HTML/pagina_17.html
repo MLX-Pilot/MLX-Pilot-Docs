@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Evolução do Projeto</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* SVG Background Pattern */
+        .bg-grid {
+            background-color: #050505;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23111' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 20px 20px;
+            opacity: 0.8;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            height: 100%;
+            margin-top: 20px;
+        }
+
+        /* The central line */
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            right: 40px;
+            height: 4px;
+            background: #222;
+            z-index: 0;
+            border-radius: 2px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            width: 15%; /* Just starting */
+            height: 4px;
+            background: linear-gradient(90deg, #00ff41, #00d9ff);
+            z-index: 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        /* Milestone Points */
+        .milestone {
+            position: relative;
+            z-index: 2;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .milestone-dot {
+            width: 20px;
+            height: 20px;
+            background: #050505;
+            border: 3px solid #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .milestone:hover .milestone-dot {
+            background: #fff;
+            box-shadow: 0 0 15px currentColor;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .milestone.active .milestone-dot {
+            border-color: #00ff41;
+            background: #00ff41;
+            box-shadow: 0 0 10px #00ff41;
+        }
+
+        .milestone.future .milestone-dot {
+            border-color: #00d9ff;
+        }
+
+        /* Content Cards */
+        .milestone-content {
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid #333;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 8px;
+            width: 260px;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .milestone-content:hover {
+            border-color: currentColor;
+            transform: translateY(-5px);
+            background: rgba(25, 25, 25, 0.95);
+            z-index: 10;
+        }
+
+        .milestone.top .milestone-content {
+            bottom: 40px;
+            border-bottom: 3px solid currentColor;
+        }
+
+        .milestone.bottom .milestone-content {
+            top: 40px;
+            border-top: 3px solid currentColor;
+        }
+
+        /* Connecting lines from dot to card */
+        .connector {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            background: #333;
+            height: 40px;
+            transform: translateX(-50%);
+        }
+
+        .milestone.top .connector {
+            bottom: 0;
+            top: auto;
+        }
+
+        .milestone.bottom .connector {
+            top: 0;
+        }
+
+        .milestone:hover .connector {
+            background: currentColor;
+        }
+
+        /* Icon styling */
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Specific Colors */
+        .accent-green { color: #00ff41; }
+        .accent-blue { color: #00d9ff; }
+        .accent-purple { color: #bd00ff; }
+        .accent-orange { color: #ff9900; }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+<div class="w-full h-full relative flex flex-col p-12 bg-grid">
+<!-- Header -->
+<div class="relative z-10 mb-2 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
+<i class="fas fa-route mr-2"></i>Future Roadmap
+                    </span>
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    Evolução do <span class="text-[#00ff41]">Projeto</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    ROADMAP_TARGETS // v1.0.0-release
+                </p>
+<div class="mt-2 flex justify-end items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-[#00ff41] animate-pulse"></div>
+<span class="text-xs text-gray-500 tech-font">IN DEVELOPMENT</span>
+</div>
+</div>
+</div>
+<!-- Timeline Section -->
+<div class="flex-1 relative">
+<div class="timeline-container">
+<!-- Line -->
+<!-- <div class="timeline-line"></div> -->
+<!-- <div class="timeline-progress"></div> -->
+<!-- Item 1: Agente Autônomo (Top) -->
+<div class="milestone top active accent-green">
+<div class="milestone-content text-[#00ff41]">
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00ff41]">
+<i class="fas fa-robot"></i>
+</div>
+<span class="tech-font text-[10px] opacity-60 font-bold border border-[#00ff41] px-2 py-0.5 rounded">PHASE 1</span>
+</div>
+<h3 class="text-white text-lg font-bold mb-2">Agente Autônomo</h3>
+<p class="text-gray-400 text-xs leading-relaxed">
+                            Loop OODA já implementado (PR #35). Próximo passo: ferramentas sandboxed e sistema de skills do agente.
+                        </p>
+</div>
+<div class="connector"></div>
+<div class="milestone-dot"></div>
+<!-- <div class="absolute top-[calc(50%+25px)] tech-font text-[10px] text-gray-600 font-bold">Q1 / 2026</div> -->
+</div>
+<!-- Item 2: n8n Embedded (Bottom) -->
+<div class="milestone bottom active accent-blue">
+<div class="milestone-dot"></div>
+<div class="connector"></div>
+<!-- <div class="absolute bottom-[calc(50%+25px)] tech-font text-[10px] text-gray-600 font-bold">Q2 / 2026</div> -->
+<div class="milestone-content text-[#00d9ff]">
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#00d9ff]">
+<i class="fas fa-project-diagram"></i>
+</div>
+<span class="tech-font text-[10px] opacity-60 font-bold border border-[#00d9ff] px-2 py-0.5 rounded">PHASE 2</span>
+</div>
+<h3 class="text-white text-lg font-bold mb-2">n8n Embedded</h3>
+<p class="text-gray-400 text-xs leading-relaxed">
+                            n8n local já integrado (PR #41). Próximo passo: embutir o motor no binário.
+                        </p>
+</div>
+</div>
+<!-- Item 3: Sistema de Plugins (Top) -->
+<div class="milestone top future accent-purple">
+<div class="milestone-content text-[#bd00ff]">
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#bd00ff]">
+<i class="fas fa-puzzle-piece"></i>
+</div>
+<span class="tech-font text-[10px] opacity-60 font-bold border border-[#bd00ff] px-2 py-0.5 rounded">PHASE 3</span>
+</div>
+<h3 class="text-white text-lg font-bold mb-2">Sistema de Plugins</h3>
+<p class="text-gray-400 text-xs leading-relaxed">
+                            Arquitetura extensível baseada em WebAssembly (WASM) para permitir que a comunidade crie novos providers e ferramentas sem recompilar o core.
+                        </p>
+</div>
+<div class="connector"></div>
+<div class="milestone-dot"></div>
+<!-- <div class="absolute top-[calc(50%+25px)] tech-font text-[10px] text-gray-600 font-bold">Q3 / 2026</div> -->
+</div>
+<!-- Item 4: Empacotamento (Bottom) -->
+<div class="milestone bottom future accent-orange">
+<div class="milestone-dot"></div>
+<div class="connector"></div>
+<!-- <div class="absolute bottom-[calc(50%+25px)] tech-font text-[10px] text-gray-600 font-bold">Q4 / 2026</div> -->
+<div class="milestone-content text-[#ff9900]">
+<div class="flex justify-between items-start">
+<div class="icon-box text-[#ff9900]">
+<i class="fas fa-box-open"></i>
+</div>
+<span class="tech-font text-[10px] opacity-60 font-bold border border-[#ff9900] px-2 py-0.5 rounded">PHASE 4</span>
+</div>
+<h3 class="text-white text-lg font-bold mb-2">Multiplataforma</h3>
+<p class="text-gray-400 text-xs leading-relaxed">
+                            Builds otimizadas para Windows (CUDA/DirectML) e Linux, com instaladores nativos (.msi, .deb) e gerenciamento de dependências isolado.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4">
+<div>
+                STRATEGIC_PLANNING // ACADEMIC_YEAR_2026
+            </div>
+<!-- <div class="flex items-center gap-4"> -->
+<!-- <span><i class="fas fa-code mr-1"></i> DEV_BRANCH: feature/roadmap</span> -->
+<!-- <span><i class="fas fa-lock mr-1"></i> TCC_PREPARATION</span> -->
+<!-- </div> -->
+</div>
+</div>
+</body>
+</html>

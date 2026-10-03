@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apresentacao MLX-Pilot</title>
+  <style>
+    :root {
+      --bg-0: #07090d;
+      --bg-1: #101722;
+      --text: #e8edf2;
+      --muted: #99a3ad;
+      --accent: #36d399;
+      --accent-soft: rgba(54, 211, 153, 0.24);
+      --panel: rgba(14, 17, 20, 0.74);
+      --border: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -15%, #1b2634 0%, transparent 60%),
+        radial-gradient(900px 600px at 85% 120%, #143243 0%, transparent 64%),
+        linear-gradient(140deg, var(--bg-0), var(--bg-1));
+    }
+
+    .app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      --slide-scale: 1;
+      isolation: isolate;
+    }
+
+    .frame-layer {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+      z-index: 1;
+    }
+
+    .frame-layer.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .frame-layer.anim-enter-next {
+      animation: slide-enter-next 520ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+      z-index: 4;
+    }
+
+    .frame-layer.anim-leave-next {
+      animation: slide-leave-next 520ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+      z-index: 3;
+    }
+
+    .frame-layer.anim-enter-prev {
+      animation: slide-enter-prev 520ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+      z-index: 4;
+    }
+
+    .frame-layer.anim-leave-prev {
+      animation: slide-leave-prev 520ms cubic-bezier(0.2, 0.72, 0.24, 1) both;
+      z-index: 3;
+    }
+
+    .frame-shell {
+      width: 1280px;
+      height: 720px;
+      transform: scale(var(--slide-scale));
+      transform-origin: center center;
+    }
+
+    .slide-frame {
+      width: 1280px;
+      height: 720px;
+      border: 0;
+      display: block;
+      background: transparent;
+    }
+
+    @keyframes slide-enter-next {
+      from {
+        opacity: 0;
+        transform: translate3d(64px, 0, 0) scale(0.992);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes slide-leave-next {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(-72px, 0, 0) scale(1.008);
+      }
+    }
+
+    @keyframes slide-enter-prev {
+      from {
+        opacity: 0;
+        transform: translate3d(-64px, 0, 0) scale(0.992);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes slide-leave-prev {
+      from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate3d(72px, 0, 0) scale(1.008);
+      }
+    }
+
+    .click-nav {
+      position: absolute;
+      top: 25%;
+      bottom: 25%;
+      width: 6%;
+      z-index: 6;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+    }
+
+    .click-nav.prev {
+      left: 0;
+    }
+
+    .click-nav.next {
+      right: 0;
+    }
+
+    .hud {
+      position: absolute;
+      left: 50%;
+      bottom: max(12px, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 8;
+      width: min(calc(100% - 24px), 980px);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .hud.hidden {
+      opacity: 0;
+      transform: translate(-50%, 10px);
+      pointer-events: none;
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-soft);
+    }
+
+    .count {
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .progress-track {
+      position: relative;
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #2dcf8f, #72e9b9);
+      transition: width 0.26s ease;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .kbd {
+      display: inline-block;
+      padding: 1px 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 11px;
+      color: #d3d9df;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .frame-layer.anim-enter-next,
+      .frame-layer.anim-leave-next,
+      .frame-layer.anim-enter-prev,
+      .frame-layer.anim-leave-prev {
+        animation-duration: 1ms;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hud {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .actions {
+        justify-content: center;
+      }
+
+      .meta {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <main class="stage" id="stage">
+      <div class="frame-layer is-active" id="layerA">
+        <div class="frame-shell">
+          <iframe class="slide-frame" id="slideFrameA" title="Slide A"></iframe>
+        </div>
+      </div>
+      <div class="frame-layer" id="layerB">
+        <div class="frame-shell">
+          <iframe class="slide-frame" id="slideFrameB" title="Slide B"></iframe>
+        </div>
+      </div>
+      <button class="click-nav prev" id="prevArea" aria-label="Slide anterior"></button>
+      <button class="click-nav next" id="nextArea" aria-label="Proximo slide"></button>
+    </main>
+
+    <section class="hud" id="hud">
+      <div class="meta">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="count" id="countLabel">Slide 1 / 20</span>
+      </div>
+
+      <div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="hint">
+          <span class="kbd">Setas</span> navegar
+          <span class="kbd">Espaco</span> avancar
+          <span class="kbd">F</span> tela cheia
+          <span class="kbd">H</span> ocultar barra
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="prevBtn" type="button">Anterior</button>
+        <button class="btn" id="nextBtn" type="button">Proximo</button>
+        <button class="btn" id="fullscreenBtn" type="button">Tela cheia</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const TOTAL_SLIDES = 23;
+    const slides = Array.from({ length: TOTAL_SLIDES }, (_, i) => `pagina_${i + 1}.html`);
+
+    const stage = document.getElementById("stage");
+    const layers = [
+      {
+        root: document.getElementById("layerA"),
+        frame: document.getElementById("slideFrameA")
+      },
+      {
+        root: document.getElementById("layerB"),
+        frame: document.getElementById("slideFrameB")
+      }
+    ];
+    const countLabel = document.getElementById("countLabel");
+    const progressFill = document.getElementById("progressFill");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const hud = document.getElementById("hud");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const readSlideFromUrl = () => {
+      const byHash = Number((window.location.hash || "").replace("#", ""));
+      const byQuery = Number(new URLSearchParams(window.location.search).get("slide"));
+      const target = Number.isFinite(byHash) && byHash > 0 ? byHash : byQuery;
+      if (!Number.isFinite(target) || target < 1 || target > slides.length) {
+        return 0;
+      }
+      return target - 1;
+    };
+
+    let current = readSlideFromUrl();
+    let activeLayerIndex = 0;
+    let isTransitioning = false;
+    let hudTimer;
+    let hudPinnedHidden = false;
+
+    const saveCurrentSlide = () => {
+      window.location.hash = String(current + 1);
+      try {
+        localStorage.setItem("presentation.currentSlide", String(current));
+      } catch (_error) {
+      }
+    };
+
+    const loadSavedSlideIfNoUrl = () => {
+      if (window.location.hash) {
+        return;
+      }
+      try {
+        const saved = Number(localStorage.getItem("presentation.currentSlide"));
+        if (Number.isFinite(saved) && saved >= 0 && saved < slides.length) {
+          current = saved;
+        }
+      } catch (_error) {
+      }
+    };
+
+    const updateScale = () => {
+      const stageWidth = stage.clientWidth;
+      const stageHeight = stage.clientHeight;
+      const scale = Math.min(stageWidth / 1280, stageHeight / 720);
+      stage.style.setProperty("--slide-scale", String(scale));
+    };
+
+    const showHud = () => {
+      if (hudPinnedHidden) {
+        return;
+      }
+      hud.classList.remove("hidden");
+      window.clearTimeout(hudTimer);
+      hudTimer = window.setTimeout(() => hud.classList.add("hidden"), 2500);
+    };
+
+    const toggleHudPinnedHidden = () => {
+      hudPinnedHidden = !hudPinnedHidden;
+      window.clearTimeout(hudTimer);
+      if (hudPinnedHidden) {
+        hud.classList.add("hidden");
+      } else {
+        showHud();
+      }
+    };
+
+    const updateUI = () => {
+      const humanIndex = current + 1;
+      countLabel.textContent = `Slide ${humanIndex} / ${slides.length}`;
+      progressFill.style.width = `${(humanIndex / slides.length) * 100}%`;
+    };
+
+    const bindFrameKeyboard = (frameElement) => {
+      try {
+        const frameWindow = frameElement.contentWindow;
+        if (!frameWindow) {
+          return;
+        }
+        frameWindow.addEventListener("keydown", onKeyDown);
+      } catch (_error) {
+      }
+    };
+
+    const getActiveLayer = () => layers[activeLayerIndex];
+    const getInactiveLayer = () => layers[1 - activeLayerIndex];
+
+    const clearAnimationClasses = (layerRoot) => {
+      layerRoot.classList.remove("anim-enter-next", "anim-leave-next", "anim-enter-prev", "anim-leave-prev");
+    };
+
+    const loadFrame = (frameElement, source) => new Promise((resolve) => {
+      const onLoad = () => resolve();
+      frameElement.addEventListener("load", onLoad, { once: true });
+      frameElement.src = source;
+      window.setTimeout(resolve, 1800);
+    });
+
+    const waitAnimationEnd = (layerRoot) => new Promise((resolve) => {
+      const onEnd = () => resolve();
+      layerRoot.addEventListener("animationend", onEnd, { once: true });
+      window.setTimeout(resolve, 650);
+    });
+
+    const transitionTo = async (targetIndex, direction) => {
+      if (targetIndex < 0 || targetIndex >= slides.length || targetIndex === current || isTransitioning) {
+        return;
+      }
+
+      const fromLayer = getActiveLayer();
+      const toLayer = getInactiveLayer();
+      clearAnimationClasses(fromLayer.root);
+      clearAnimationClasses(toLayer.root);
+
+      isTransitioning = true;
+      await loadFrame(toLayer.frame, slides[targetIndex]);
+
+      current = targetIndex;
+      updateUI();
+      saveCurrentSlide();
+
+      if (prefersReducedMotion) {
+        fromLayer.root.classList.remove("is-active");
+        toLayer.root.classList.add("is-active");
+        activeLayerIndex = 1 - activeLayerIndex;
+        bindFrameKeyboard(toLayer.frame);
+        isTransitioning = false;
+        return;
+      }
+
+      const enteringClass = direction === "prev" ? "anim-enter-prev" : "anim-enter-next";
+      const leavingClass = direction === "prev" ? "anim-leave-prev" : "anim-leave-next";
+
+      toLayer.root.classList.add("is-active", enteringClass);
+      fromLayer.root.classList.add(leavingClass);
+
+      await Promise.all([waitAnimationEnd(toLayer.root), waitAnimationEnd(fromLayer.root)]);
+
+      fromLayer.root.classList.remove("is-active");
+      clearAnimationClasses(fromLayer.root);
+      clearAnimationClasses(toLayer.root);
+      toLayer.root.classList.add("is-active");
+
+      activeLayerIndex = 1 - activeLayerIndex;
+      bindFrameKeyboard(toLayer.frame);
+      isTransitioning = false;
+    };
+
+    const renderInitialSlide = async () => {
+      const activeLayer = getActiveLayer();
+      await loadFrame(activeLayer.frame, slides[current]);
+      updateUI();
+      saveCurrentSlide();
+      bindFrameKeyboard(activeLayer.frame);
+    };
+
+    const next = () => {
+      if (current < slides.length - 1) {
+        transitionTo(current + 1, "next");
+      }
+    };
+
+    const prev = () => {
+      if (current > 0) {
+        transitionTo(current - 1, "prev");
+      }
+    };
+
+    const goTo = (index) => {
+      if (index < 0 || index >= slides.length) {
+        return;
+      }
+      const direction = index >= current ? "next" : "prev";
+      transitionTo(index, direction);
+    };
+
+    const toggleFullscreen = async () => {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    };
+
+    const onKeyDown = (event) => {
+      const key = event.key;
+      let handled = true;
+
+      if (key === "ArrowRight" || key === "PageDown" || key === " " || key === "Enter") {
+        next();
+      } else if (key === "ArrowLeft" || key === "PageUp" || key === "Backspace") {
+        prev();
+      } else if (key === "Home") {
+        goTo(0);
+      } else if (key === "End") {
+        goTo(slides.length - 1);
+      } else if (key === "f" || key === "F") {
+        toggleFullscreen().catch(() => {});
+      } else if (key === "h" || key === "H") {
+        toggleHudPinnedHidden();
+      } else {
+        handled = false;
+      }
+
+      if (handled) {
+        event.preventDefault();
+        showHud();
+      }
+      return handled;
+    };
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      next();
+      showHud();
+    });
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      prev();
+      showHud();
+    });
+    document.getElementById("nextArea").addEventListener("click", () => {
+      next();
+      showHud();
+    });
+    document.getElementById("prevArea").addEventListener("click", () => {
+      prev();
+      showHud();
+    });
+    fullscreenBtn.addEventListener("click", () => toggleFullscreen().catch(() => {}));
+    document.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", updateScale);
+    document.addEventListener("fullscreenchange", () => {
+      fullscreenBtn.textContent = document.fullscreenElement ? "Sair tela cheia" : "Tela cheia";
+      updateScale();
+      showHud();
+    });
+    window.addEventListener("hashchange", () => {
+      const urlIndex = readSlideFromUrl();
+      if (urlIndex !== current) {
+        const direction = urlIndex > current ? "next" : "prev";
+        transitionTo(urlIndex, direction);
+      }
+    });
+    stage.addEventListener("mousemove", showHud);
+    stage.addEventListener("click", showHud);
+
+    loadSavedSlideIfNoUrl();
+    updateScale();
+    renderInitialSlide();
+    showHud();
+  </script>
+</body>
+</html>
