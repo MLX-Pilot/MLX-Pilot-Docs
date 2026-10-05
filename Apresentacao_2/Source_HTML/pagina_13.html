@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MLX-Pilot - Objetivos Acadêmicos</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MLX-Pilot - Loop OODA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
         body {
             margin: 0;
             padding: 0;
@@ -19,227 +22,193 @@
             background-color: #050505;
             color: #ffffff;
         }
-        
+
         .tech-font {
             font-family: 'Roboto Mono', monospace;
         }
 
-        /* SVG Background Pattern to replace gradients */
-        .bg-tech-grid {
+        /* SVG Pattern Background to avoid gradients */
+        .bg-pattern {
             background-color: #050505;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM22.485 0l.83.828-1.415 1.415L19.657 0h2.828zM0 22.485l.828.83 1.415-1.415L0 19.658v2.827zM0 54.627l.828.83 1.415-1.415L0 51.8v2.827zM57.456 0l2.544 2.544V0h-2.544zM25.314 0l2.544 2.544V0h-2.544zM0 25.314l2.544 2.544H0v-2.544zM0 57.456l2.544 2.544H0v-2.544zM27.858 31.858l.828.83-1.415 1.415-2.242-2.243h2.829zM31.858 27.858l.83.828-1.415 1.415-2.243-2.242h2.828z' fill='%23222' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a1a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .objective-card {
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 16px;
+            height: 100%;
+        }
+
+        .demo-card {
             background-color: #0f0f0f;
             border: 1px solid #222;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            padding: 20px;
             position: relative;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 24px 20px;
-            height: 100%;
-            z-index: 1;
+            overflow: hidden;
         }
 
-        .objective-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: transparent;
-            transition: background-color 0.3s ease;
+        .demo-card:hover {
+            border-color: #333;
+            transform: translateY(-2px);
+            background-color: #111;
         }
 
-        .objective-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-            background-color: #141414;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 10;
+        .demo-card.green-accent:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
         }
 
-        .objective-card:hover::after {
-            background-color: var(--accent-color);
+        .demo-card.blue-accent:hover {
+            border-color: #00d9ff;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
         }
 
-        .objective-card:hover .icon-circle {
-            background-color: var(--accent-color);
-            color: #000;
-            box-shadow: 0 0 15px var(--accent-shadow);
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
 
-        .icon-circle {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background-color: #1a1a1a;
-            color: var(--accent-color);
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .green-text {
+            color: #00ff41;
+        }
+
+        .blue-text {
+            color: #00d9ff;
+        }
+
+        .bg-green {
+            background-color: #00ff41;
+        }
+
+        .bg-blue {
+            background-color: #00d9ff;
+        }
+
+        .ui-mockup {
+            background-color: #050505;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: auto;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            color: #aaa;
+            position: relative;
+        }
+
+        .ui-mockup::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 30px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        /* Mockup specific styles */
+        .typing-cursor::after {
+            content: '▋';
+            animation: blink 1s step-end infinite;
+            color: #00ff41;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .progress-track {
+            height: 6px;
+            background-color: #222;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            margin-right: 4px;
+            background-color: #222;
             border: 1px solid #333;
         }
 
-        /* Accent Colors */
-        .accent-green { --accent-color: #00ff41; --accent-shadow: rgba(0, 255, 65, 0.4); }
-        .accent-blue { --accent-color: #00d9ff; --accent-shadow: rgba(0, 217, 255, 0.4); }
-        .accent-white { --accent-color: #ffffff; --accent-shadow: rgba(255, 255, 255, 0.4); }
-
-        .number-tag {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 40px;
-            font-weight: 900;
-            color: #222;
-            font-family: 'Roboto Mono', monospace;
-            z-index: 0;
-            opacity: 0.5;
-            transition: color 0.3s;
+        .tag-badge.active {
+            background-color: rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+            color: #00ff41;
         }
 
-        .objective-card:hover .number-tag {
-            color: #333;
+        .offline-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #00ff41;
+            font-size: 10px;
+            margin-top: 4px;
         }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 20px;
-            height: 100%;
-            width: 100%;
-        }
-
-        /* Specific positioning for layout variety */
-        .grid-item-1 { grid-column: 1; grid-row: 1; }
-        .grid-item-2 { grid-column: 2; grid-row: 1; }
-        .grid-item-3 { grid-column: 3; grid-row: 1; }
-        /* Centered bottom row items */
-        .grid-item-4 { grid-column: 1 / span 1.5; grid-row: 2; transform: translateX(50%); width: 100%; } /* Using transform to center isn't ideal for grid. Let's adjust grid */
-        
-        /* Revised Grid for 5 items: 3 top, 2 bottom centered-ish */
-        .custom-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 24px;
-            padding-bottom: 20px;
-        }
-
-        .cell-top { grid-column: span 2; }
-        .cell-bottom-1 { grid-column: 2 / span 2; }
-        .cell-bottom-2 { grid-column: 4 / span 2; }
-
-    </style>
-</head>
-<body>
-<div class="w-full h-full relative flex flex-col p-12 bg-tech-grid">
-<!-- Header -->
-<div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
-<div>
-<div class="flex items-center gap-3 mb-2">
-<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase px-2 py-1 border border-[#00ff41] bg-[#00ff41] bg-opacity-10 rounded">
-<i class="fas fa-university mr-2"></i>Academic Goals
-                    </span>
+    
+.np{width:1280px;height:720px;box-sizing:border-box;padding:30px 48px 22px;display:flex;flex-direction:column;position:relative}
+.np-main{flex:1;min-height:0;display:grid;grid-template-columns:5fr 7fr;gap:28px;margin-top:20px}
+.hl{display:flex;gap:14px;margin-top:18px}
+.hi{width:40px;height:40px;flex:none;border:1px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--a);background:#111}
+.panel{border:1px solid #222;border-radius:10px;background:rgba(20,20,20,.7);display:flex;flex-direction:column;overflow:hidden}
+.pbar{padding:10px 14px;border-bottom:1px solid #222;font:11px 'Roboto Mono',monospace;color:#777;display:flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:#333}
+.pbody{flex:1;padding:16px;font-family:'Roboto Mono',monospace;font-size:12px;color:#aaa;display:flex;flex-direction:column;gap:10px;min-height:0}
+.chip{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:6px 10px;color:#ddd;display:inline-block}
+.chip.on{border-color:var(--a);color:var(--a);background:rgba(255,255,255,.04)}
+.ref{border:1px solid #2a2a2a;border-radius:6px;padding:5px 10px;font:11px 'Roboto Mono',monospace;color:#ccc;background:#0d0d0d;display:inline-block;margin-right:8px}
+.ref i{color:var(--a);margin-right:6px}
+.lbl{font-size:10px;letter-spacing:.12em;color:#666}
+.bar{height:8px;border-radius:4px;background:#1c1c1c;overflow:hidden}.bar>div{height:100%;background:#444}.bar.on>div{background:var(--a)}
+.row{display:flex;align-items:center;gap:10px}
+.node{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:8px 12px;color:#ddd;white-space:nowrap}
+.node.on{border-color:var(--a);color:var(--a)}
+.arr{color:#555}
+.pbody.shot-body{padding:0;gap:0}.shot{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+</style></head>
+<body><div class="np bg-pattern" style="--a:#00ff41">
+<div class="flex justify-between items-end border-b border-gray-800 pb-5">
+ <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00ff41"><i class="fas fa-rotate mr-2"></i>Autonomous Agent</span></div>
+ <h1 class="text-4xl font-bold text-white tracking-tight">Loop <span class="text-gray-500">OODA</span></h1></div>
+ <div class="text-right"><p class="text-gray-400 text-sm tech-font">PR #35 · COMMIT 0f34d64</p></div></div>
+<div class="np-main">
+ <div><p class="text-gray-300 text-sm leading-relaxed">Implementação de ciclo OODA (Observe-Orient-Decide-Act) para tarefas multi-etapa. Dentro de um loop OODA, a IA pode desmembrar um objetivo complexo em várias sub-rotinas e percorrer todas elas de forma automatizada até terminar a tarefa.</p><div class="hl"><div class="hi"><i class="fas fa-list-check"></i></div><div><div class="text-white font-bold text-sm">Tarefas multi-etapa</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Objetivo complexo dividido em sub-rotinas.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-sitemap"></i></div><div><div class="text-white font-bold text-sm">Ciclo automatizado</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Observe, Orient, Decide e Act a cada sub-rotina.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-flag-checkered"></i></div><div><div class="text-white font-bold text-sm">Até concluir</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Percorre todas as sub-rotinas até o fim da tarefa.</div></div></div></div>
+ <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">terminal — POST /agent/run · runtime OODA · qwen3.5:9b local</span></div><div class="pbody shot-body"><img class="shot" src="prints/s12_ooda.png" alt="Saída real do runtime OODA do MLX Pilot: plano de 5 passos concluído e docs/analise.md gerado pelo agente" /></div></div>
 </div>
-<h1 class="text-5xl font-bold text-white tracking-tight">
-                    Objetivo <span class="text-gray-500">Acadêmico</span>
-</h1>
-</div>
-<div class="text-right">
-<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
-                    RESEARCH_FOCUS // EXPERIMENTATION // BENCHMARK
-                </p>
-</div>
-</div>
-<!-- Main Content Grid -->
-<div class="flex-1 custom-grid z-10">
-<!-- Objective 1 -->
-<div class="cell-top">
-<div class="objective-card accent-green">
-<span class="number-tag">01</span>
-<div class="icon-circle">
-<i class="fas fa-cubes"></i>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Arquitetura Modular</h3>
-<p class="text-gray-400 text-sm leading-relaxed px-2">
-                        Estudo aprofundado sobre desacoplamento de sistemas, separando interface (Tauri) do controle lógico (Rust) e inferência.
-                    </p>
-</div>
-</div>
-<!-- Objective 2 -->
-<div class="cell-top">
-<div class="objective-card accent-blue">
-<span class="number-tag">02</span>
-<div class="icon-circle">
-<i class="fas fa-network-wired"></i>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Local vs Remoto</h3>
-<p class="text-gray-400 text-sm leading-relaxed px-2">
-                        Análise comparativa crítica entre execução local (privacidade, latência zero) e nuvem (custo, escalabilidade).
-                    </p>
-</div>
-</div>
-<!-- Objective 3 -->
-<div class="cell-top">
-<div class="objective-card accent-green">
-<span class="number-tag">03</span>
-<div class="icon-circle">
-<i class="fas fa-tachometer-alt"></i>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Benchmark</h3>
-<p class="text-gray-400 text-sm leading-relaxed px-2">
-                        Coleta sistemática de métricas de performance: Tokens por segundo (TPS), Tempo para o primeiro token (TTFT) e uso de memória.
-                    </p>
-</div>
-</div>
-<!-- Objective 4 -->
-<div class="cell-bottom-1">
-<div class="objective-card accent-white">
-<span class="number-tag">04</span>
-<div class="icon-circle">
-<i class="fas fa-fire-alt"></i>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Stress Test GPU</h3>
-<p class="text-gray-400 text-sm leading-relaxed px-4">
-                        Avaliação de limites de hardware com modelos massivos (7B+), monitorando temperatura, consumo energético e gargalos de VRAM.
-                    </p>
-</div>
-</div>
-<!-- Objective 5 -->
-<div class="cell-bottom-2">
-<div class="objective-card accent-blue">
-<span class="number-tag">05</span>
-<div class="icon-circle">
-<i class="fas fa-flask"></i>
-</div>
-<h3 class="text-xl font-bold text-white mb-2 uppercase tracking-wide">Base de Pesquisa</h3>
-<p class="text-gray-400 text-sm leading-relaxed px-4">
-                        Criação de uma plataforma estável e documentada para servir como fundação para futuros Trabalhos de Conclusão de Curso (TCC).
-                    </p>
-</div>
-</div>
-</div>
-<!-- Footer -->
-<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
-<div>
-<span>STATUS: IN_PROGRESS</span>
-<span class="mx-2">|</span>
-<span>PI_IV_OBJECTIVES</span>
-</div>
-<div>
-<i class="fas fa-check-circle text-[#00ff41] mr-1"></i> ACADEMIC_VALIDATION
-            </div>
-</div>
-</div>
-</body>
-</html>
+<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #35</span><span class="ref"><i class="fas fa-code-commit"></i>0f34d64</span></div>
+<div class="flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-3 mt-3">
+ <div>SYSTEM STATUS: <span style="color:#00ff41">DELIVERED</span></div>
+ <div class="flex gap-4"><span><i class="fab fa-rust mr-1"></i>RUST</span><span><i class="fab fa-js mr-1"></i>TAURI</span><span><i class="fab fa-apple mr-1"></i>METAL</span></div></div>
+</div></body></html>

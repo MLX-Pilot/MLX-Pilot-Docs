@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Documentação</title>
+    <title>MLX-Pilot - Simulação de Hardware</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
@@ -196,18 +196,19 @@
 .node{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:8px 12px;color:#ddd;white-space:nowrap}
 .node.on{border-color:var(--a);color:var(--a)}
 .arr{color:#555}
+.pbody.shot-body{padding:0;gap:0}.shot{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
 </style></head>
-<body><div class="np bg-pattern" style="--a:#00ff41">
+<body><div class="np bg-pattern" style="--a:#00d9ff">
 <div class="flex justify-between items-end border-b border-gray-800 pb-5">
- <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00ff41"><i class="fas fa-book mr-2"></i>MLX-Pilot-Docs</span></div>
- <h1 class="text-4xl font-bold text-white tracking-tight">Atualização de <span class="text-gray-500">Documentação</span></h1></div>
- <div class="text-right"><p class="text-gray-400 text-sm tech-font">PR #5 · PR #4</p></div></div>
+ <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00d9ff"><i class="fas fa-microchip mr-2"></i>Hardware Simulation</span></div>
+ <h1 class="text-4xl font-bold text-white tracking-tight">Simulação de Desempenho <span class="text-gray-500">de Hardware</span></h1></div>
+ <div class="text-right"><p class="text-gray-400 text-sm tech-font">FEATURE // PR #42</p></div></div>
 <div class="np-main">
- <div><p class="text-gray-300 text-sm leading-relaxed">Artefato que define e explicita os princípios, responsabilidades, controles e procedimentos utilizados pelo MLX Pilot para garantir o uso seguro, transparente, privado e auditável de modelos de inteligência artificial.</p><div class="hl"><div class="hi"><i class="fas fa-robot"></i></div><div><div class="text-white font-bold text-sm">Escopo de IA</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Delimita o uso de modelos de IA no MLX Pilot.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-scale-balanced"></i></div><div><div class="text-white font-bold text-sm">LGPD</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Diretrizes de privacidade e proteção de dados pessoais.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-triangle-exclamation"></i></div><div><div class="text-white font-bold text-sm">Classificações de risco</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Categorização dos riscos do uso dos modelos.</div></div></div></div>
- <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">/MLX-Pilot-Docs</span></div><div class="pbody"><div class="text-white"><i class="fas fa-folder-open mr-2" style="color:#00d9ff"></i>/MLX-Pilot-Docs</div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">01</span><span class="text-gray-200">Princípios</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">02</span><span class="text-gray-200">Responsabilidades</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">03</span><span class="text-gray-200">Controles</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">04</span><span class="text-gray-200">Procedimentos</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">05</span><span class="text-gray-200">Escopo de IA</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">06</span><span class="text-gray-200">LGPD</span></div><div class="row" style="padding-left:22px"><i class="far fa-file-lines text-gray-500"></i><span class="text-gray-500">07</span><span class="text-gray-200">Classificação de risco</span></div><div class="mt-auto"><div class="lbl mb-2">GARANTIAS</div><span class="chip on mr-2">Seguro</span><span class="chip on mr-2">Transparente</span><span class="chip on mr-2">Privado</span><span class="chip on mr-2">Auditável</span></div></div></div>
+ <div><p class="text-gray-300 text-sm leading-relaxed">Adição de peças de CPU, RAM, GPU, VRAM e outros para simular como diferentes modelos de IA performam melhor em diferentes combinações de hardware.</p><div class="hl"><div class="hi"><i class="fas fa-memory"></i></div><div><div class="text-white font-bold text-sm">Peças configuráveis</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">CPU, RAM, GPU, VRAM e demais componentes.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-sliders"></i></div><div><div class="text-white font-bold text-sm">Combinações de hardware</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Compara cenários montados a partir das peças.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-chart-simple"></i></div><div><div class="text-white font-bold text-sm">Modelo × hardware</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Mostra qual combinação favorece cada modelo de IA.</div></div></div></div>
+ <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">MLX Pilot — Hardware &amp; Model Fit</span></div><div class="pbody shot-body"><img class="shot" src="prints/s08_hardware.png" alt="Tela Hardware &amp; Model Fit do MLX Pilot com simulação de RTX 4090 e ranking de modelos" /></div></div>
 </div>
-<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #5</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #4</span><span class="ref"><i class="fas fa-code-commit"></i>6946233</span></div>
+<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #42</span><span class="ref"><i class="fas fa-circle-dot"></i>Issue</span><span class="ref"><i class="fas fa-code-commit"></i>d6951c4</span><span class="ref"><i class="fas fa-code-commit"></i>1cce5ea</span></div>
 <div class="flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-3 mt-3">
- <div>SYSTEM STATUS: <span style="color:#00ff41">DELIVERED</span></div>
+ <div>SYSTEM STATUS: <span style="color:#00d9ff">DELIVERED</span></div>
  <div class="flex gap-4"><span><i class="fab fa-rust mr-1"></i>RUST</span><span><i class="fab fa-js mr-1"></i>TAURI</span><span><i class="fab fa-apple mr-1"></i>METAL</span></div></div>
 </div></body></html>

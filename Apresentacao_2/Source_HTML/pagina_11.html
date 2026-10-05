@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Integração com n8n</title>
+    <title>MLX-Pilot - Memória Local e Contexto</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
@@ -196,18 +196,19 @@
 .node{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:8px 12px;color:#ddd;white-space:nowrap}
 .node.on{border-color:var(--a);color:var(--a)}
 .arr{color:#555}
+.pbody.shot-body{padding:0;gap:0}.shot{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
 </style></head>
-<body><div class="np bg-pattern" style="--a:#00d9ff">
+<body><div class="np bg-pattern" style="--a:#00ff41">
 <div class="flex justify-between items-end border-b border-gray-800 pb-5">
- <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00d9ff"><i class="fas fa-diagram-project mr-2"></i>Workflow Automation</span></div>
- <h1 class="text-4xl font-bold text-white tracking-tight">Integração com <span class="text-gray-500">n8n</span></h1></div>
- <div class="text-right"><p class="text-gray-400 text-sm tech-font">ISSUE #36 · PR #41</p></div></div>
+ <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00ff41"><i class="fas fa-brain mr-2"></i>Session Persistence</span></div>
+ <h1 class="text-4xl font-bold text-white tracking-tight">Memória Local, Sessão Ativa <span class="text-gray-500">e Contexto</span></h1></div>
+ <div class="text-right"><p class="text-gray-400 text-sm tech-font">PR #15 · PR #31</p></div></div>
 <div class="np-main">
- <div><p class="text-gray-300 text-sm leading-relaxed">O MLX-Pilot possui integração direta com o n8n local, podendo gerar workflows via prompt e um editor visual nativo para criar um workflow do zero.</p><div class="hl"><div class="hi"><i class="fas fa-server"></i></div><div><div class="text-white font-bold text-sm">n8n local</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Integração direta com a instância local do n8n.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-wand-magic-sparkles"></i></div><div><div class="text-white font-bold text-sm">Workflow via prompt</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Descreva a automação e o workflow é gerado.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-pen-ruler"></i></div><div><div class="text-white font-bold text-sm">Editor visual nativo</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Crie um workflow do zero dentro do app.</div></div></div></div>
- <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">n8n_integration</span></div><div class="pbody"><div class="lbl">1 · GERAR VIA PROMPT</div><div class="node" style="white-space:normal;border-left:2px solid #00d9ff">Prompt: "Resumir documentos novos e enviar por e-mail"</div><div class="row"><span class="node">Trigger</span><span class="arr">→</span><span class="node on">LLM local</span><span class="arr">→</span><span class="node">E-mail</span><span class="ml-2 text-[11px]" style="color:#00d9ff">workflow gerado</span></div><div class="lbl mt-3">2 · EDITOR VISUAL NATIVO</div><div class="row" style="border:1px dashed #333;border-radius:6px;padding:12px"><span class="node">Trigger</span><span class="arr">→</span><span class="node">+ adicionar nó</span></div><div class="mt-auto text-gray-600 text-[11px]">n8n local · integração direta</div></div></div>
+ <div><p class="text-gray-300 text-sm leading-relaxed">Agora, as sessões são persistidas localmente para permitir a continuação de conversas e interações com modelos de IA sem perder contexto.</p><div class="hl"><div class="hi"><i class="fas fa-hard-drive"></i></div><div><div class="text-white font-bold text-sm">Persistência local</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Sessões gravadas na máquina do usuário.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-bolt"></i></div><div><div class="text-white font-bold text-sm">Sessão ativa</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Retoma a conversa exatamente de onde parou.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-link"></i></div><div><div class="text-white font-bold text-sm">Contexto preservado</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Interações com os modelos seguem sem perder contexto.</div></div></div></div>
+ <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">MLX Pilot — Histórico · sessão restaurada após reinício do daemon</span></div><div class="pbody shot-body"><img class="shot" src="prints/s10_sessoes.png" alt="Histórico do MLX Pilot com sessão persistida em disco: o agente lembra do contexto após o app reiniciar" /></div></div>
 </div>
-<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-circle-dot"></i>Issue #36</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #41</span></div>
+<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #15</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #31</span></div>
 <div class="flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-3 mt-3">
- <div>SYSTEM STATUS: <span style="color:#00d9ff">DELIVERED</span></div>
+ <div>SYSTEM STATUS: <span style="color:#00ff41">DELIVERED</span></div>
  <div class="flex gap-4"><span><i class="fab fa-rust mr-1"></i>RUST</span><span><i class="fab fa-js mr-1"></i>TAURI</span><span><i class="fab fa-apple mr-1"></i>METAL</span></div></div>
 </div></body></html>

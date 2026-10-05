@@ -1,218 +1,382 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MLX-Pilot - Impacto Acadêmico</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        width: 1280px;
-        height: 720px;
-        overflow: hidden;
-        font-family: 'Montserrat', sans-serif;
-        background-color: #050505;
-        color: #ffffff;
-    }
-    
-    .tech-font {
-        font-family: 'Roboto Mono', monospace;
-    }
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MLX-Pilot - Tecnologias Utilizadas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
 
-    /* SVG Pattern Background - No Gradients */
-    .bg-pattern {
-        background-color: #050505;
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM22.485 0l.83.828-1.415 1.415L19.657 0h2.828zM0 22.485l.828.83 1.415-1.415L0 19.658v2.827zM0 54.627l.828.83 1.415-1.415L0 51.8v2.827zM57.456 0l2.544 2.544V0h-2.544zM25.314 0l2.544 2.544V0h-2.544zM0 25.314l2.544 2.544H0v-2.544zM0 57.456l2.544 2.544H0v-2.544zM27.858 31.858l.828.83-1.415 1.415-2.242-2.243h2.829zM31.858 27.858l.83.828-1.415 1.415-2.243-2.242h2.828z' fill='%23151515' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
-    }
+        .tech-font {
+            font-family: 'Roboto Mono', monospace;
+        }
 
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 24px;
-        height: 100%;
-    }
+        /* Tech Background */
+        .bg-tech {
+            background-color: #050505;
+            background-image:
+                linear-gradient(rgba(20, 20, 20, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(20, 20, 20, 0.5) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
 
-    .impact-card {
-        background-color: #0a0a0a;
-        border: 1px solid #222;
-        border-radius: 12px;
-        padding: 28px;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 24px;
-        transition: all 0.3s ease;
-        overflow: hidden;
-    }
+        /* Tech Card */
+        .tech-card {
+            background: rgba(15, 15, 15, 0.6);
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
 
-    .impact-card:hover {
-        background-color: #111;
-        transform: translateY(-4px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.03), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-    /* Accent border on left */
-    .impact-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background-color: #333;
-        transition: background-color 0.3s ease;
-    }
+        .tech-card:hover {
+            transform: translateY(-5px);
+            background: rgba(20, 20, 20, 0.9);
+            border-color: #444;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
 
-    .impact-card:hover::before {
-        background-color: var(--card-accent);
-    }
+        .tech-card:hover::before {
+            opacity: 1;
+        }
 
-    .icon-container {
-        min-width: 64px;
-        height: 64px;
-        background-color: #161616;
-        border: 1px solid #333;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 26px;
-        color: #555;
-        transition: all 0.3s ease;
-    }
+        /* Accent Borders and Glows */
+        .border-rust:hover {
+            border-color: #dea584;
+            box-shadow: 0 0 15px rgba(222, 165, 132, 0.1);
+        }
 
-    .impact-card:hover .icon-container {
-        color: var(--card-accent);
-        border-color: var(--card-accent);
-        background-color: rgba(255, 255, 255, 0.02);
-        box-shadow: 0 0 15px var(--card-glow);
-    }
+        .border-tauri:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
 
-    /* Accent Definitions */
-    .accent-green {
-        --card-accent: #00ff41;
-        --card-glow: rgba(0, 255, 65, 0.15);
-    }
+        .border-axum:hover {
+            border-color: #ff3333;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.1);
+        }
 
-    .accent-blue {
-        --card-accent: #00d9ff;
-        --card-glow: rgba(0, 217, 255, 0.15);
-    }
+        .border-tokio:hover {
+            border-color: #00d9ff;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
+        }
 
-    .stat-badge {
-        position: absolute;
-        top: 24px;
-        right: 24px;
-        font-size: 10px;
-        padding: 4px 10px;
-        border-radius: 4px;
-        background-color: #161616;
-        border: 1px solid #333;
-        color: #666;
-        font-family: 'Roboto Mono', monospace;
-        letter-spacing: 0.5px;
-    }
-    
-    .impact-card:hover .stat-badge {
-        border-color: var(--card-accent);
-        color: var(--card-accent);
-        background-color: rgba(0,0,0,0.5);
-    }
+        .border-ai:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
 
-</style>
+        /* Icon Container */
+        .icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover .icon-container {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .text-rust {
+            color: #dea584;
+        }
+
+        .bg-rust {
+            background-color: rgba(222, 165, 132, 0.1);
+        }
+
+        .text-tauri {
+            color: #ffd700;
+        }
+
+        .bg-tauri {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        .text-axum {
+            color: #ff5555;
+        }
+
+        .bg-axum {
+            background-color: rgba(255, 85, 85, 0.1);
+        }
+
+        .text-tokio {
+            color: #00d9ff;
+        }
+
+        .bg-tokio {
+            background-color: rgba(0, 217, 255, 0.1);
+        }
+
+        .text-ai {
+            color: #00ff41;
+        }
+
+        .bg-ai {
+            background-color: rgba(0, 255, 65, 0.1);
+        }
+
+        /* Grid Layouts */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .chip {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #111;
+            border: 1px solid #333;
+            color: #888;
+            margin-right: 4px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+    </style>
 </head>
+
 <body>
-<div class="w-full h-full relative flex flex-col p-12 bg-pattern">
-<!-- Header -->
-<div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
-<div>
-<div class="flex items-center gap-3 mb-2">
-<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase border border-[#00ff41] px-2 py-1 rounded bg-black bg-opacity-50">
-<i class="fas fa-university mr-2"></i>Institutional Value
+    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-tech">
+        <!-- Header -->
+        <div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase px-2 py-1 border border-[#00d9ff] bg-[#00d9ff] bg-opacity-10 rounded">
+                        <i class="fas fa-layer-group mr-2"></i>Tech Stack
                     </span>
-</div>
-<h1 class="text-5xl font-bold text-white tracking-tight">
-                    Impacto <span class="text-gray-500">Acadêmico</span>
-</h1>
-</div>
-<div class="text-right">
-<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
-                    EDUCATION // RESEARCH // INNOVATION
-                </p>
-</div>
-</div>
-<!-- Content Grid -->
-<div class="flex-1 card-grid z-10">
-<!-- Card 1: Lab Prático -->
-<div class="impact-card accent-green">
-<div class="stat-badge">REQ: GPU/CPU</div>
-<div class="icon-container">
-<i class="fas fa-laptop-code"></i>
-</div>
-<div class="flex flex-col justify-center pr-12">
-<h3 class="text-xl font-bold text-white mb-2">Laboratório Prático de IA</h3>
-<p class="text-gray-400 text-sm leading-relaxed">
-                        Ambiente controlado para alunos experimentarem com LLMs sem custos de nuvem. Permite "botar a mão na massa" com inferência, prompts e fine-tuning básico.
-                    </p>
-</div>
-</div>
-<!-- Card 2: Base TCC -->
-<div class="impact-card accent-blue">
-<div class="stat-badge">DOCS: READY</div>
-<div class="icon-container">
-<i class="fas fa-graduation-cap"></i>
-</div>
-<div class="flex flex-col justify-center pr-12">
-<h3 class="text-xl font-bold text-white mb-2">Base para TCCs</h3>
-<p class="text-gray-400 text-sm leading-relaxed">
-                        Framework extensível que serve de ponto de partida para monografias. Alunos podem focar em desenvolver novos plugins ou agentes ao invés de configurar infraestrutura.
-                    </p>
-</div>
-</div>
-<!-- Card 3: Disciplinas Futuras -->
-<div class="impact-card accent-blue">
-<div class="stat-badge">COURSE: AI_101</div>
-<div class="icon-container">
-<i class="fas fa-chalkboard-teacher"></i>
-</div>
-<div class="flex flex-col justify-center pr-12">
-<h3 class="text-xl font-bold text-white mb-2">Uso em Disciplinas</h3>
-<p class="text-gray-400 text-sm leading-relaxed">
-                        Ferramenta didática para aulas de Inteligência Artificial, Sistemas Distribuídos e Compiladores, demonstrando conceitos teóricos na prática.
-                    </p>
-</div>
-</div>
-<!-- Card 4: Experimentação Institucional -->
-<div class="impact-card accent-green">
-<div class="stat-badge">SCOPE: CAMPUS</div>
-<div class="icon-container">
-<i class="fas fa-sitemap"></i>
-</div>
-<div class="flex flex-col justify-center pr-12">
-<h3 class="text-xl font-bold text-white mb-2">Plataforma Institucional</h3>
-<p class="text-gray-400 text-sm leading-relaxed">
-                        Hub centralizado para pesquisa e desenvolvimento dentro da universidade, fomentando grupos de estudo e parcerias com empresas (ex: NVIDIA).
-                    </p>
-</div>
-</div>
-</div>
-<!-- Footer -->
-<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
-<div class="flex items-center gap-4">
-<span><i class="fas fa-check-circle text-[#00ff41] mr-1"></i> HIGH_IMPACT</span>
-<span><i class="fas fa-check-circle text-[#00d9ff] mr-1"></i> SCALABLE</span>
-</div>
-<div>
-                MLX-PILOT // ACADEMIC_LICENSE_MIT
+                </div>
+                <h1 class="text-5xl font-bold text-white tracking-tight">
+                    Tecnologias <span class="text-gray-500">Utilizadas</span>
+                </h1>
             </div>
-</div>
-</div>
+            <div class="text-right">
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    HIGH_PERFORMANCE // MEMORY_SAFE // LOCAL_FIRST
+                </p>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 z-10 flex flex-col justify-center">
+            <!-- Row 1: Core Foundation -->
+            <div class="mb-4">
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 tech-font pl-1">
+                    <i class="fas fa-microchip mr-2"></i>Core Foundation
+                </h3>
+                <div class="main-grid">
+                    <!-- Rust -->
+                    <div class="tech-card border-rust">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <div class="icon-container text-rust bg-rust">
+                                    <i class="fab fa-rust"></i>
+                                </div>
+                                <span class="tech-font text-[10px] text-gray-500">v1.75+</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Rust</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Linguagem principal garantindo segurança de memória, performance nativa e zero-cost
+                                abstractions.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="chip">Core Logic</span>
+                            <span class="chip">Daemon</span>
+                        </div>
+                    </div>
+                    <!-- Tauri -->
+                    <div class="tech-card border-tauri">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <div class="icon-container text-tauri bg-tauri">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <span class="tech-font text-[10px] text-gray-500">v2.0-beta</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Tauri</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Framework para construção de UI desktop leve e segura utilizando tecnologias web
+                                (HTML/JS/CSS).
+                            </p>
+                        </div>
+                        <div>
+                            <span class="chip">Frontend</span>
+                            <span class="chip">WebView</span>
+                        </div>
+                    </div>
+                    <!-- Axum -->
+                    <div class="tech-card border-axum">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <div class="icon-container text-axum bg-axum">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <span class="tech-font text-[10px] text-gray-500">v0.7</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Axum</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Servidor HTTP ergonômico e modular para comunicação robusta entre UI e Daemon via API
+                                REST/SSE.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="chip">API REST</span>
+                            <span class="chip">Handlers</span>
+                        </div>
+                    </div>
+                    <!-- Tokio -->
+                    <div class="tech-card border-tokio">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <div class="icon-container text-tokio bg-tokio">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <span class="tech-font text-[10px] text-gray-500">Runtime</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Tokio</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Runtime assíncrono para gerenciar concorrência, I/O não bloqueante e tarefas em
+                                background.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="chip">Async</span>
+                            <span class="chip">Concurrency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row 2: Inference Engines -->
+            <div>
+                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 tech-font pl-1">
+                    <i class="fas fa-brain mr-2"></i>Inference Engines
+                </h3>
+                <div class="bottom-grid">
+                    <!-- MLX -->
+                    <div class="tech-card border-ai">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="icon-container text-ai bg-ai !mb-0 !w-10 !h-10 !text-lg">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">MLX</h3>
+                                <p class="text-[10px] text-gray-500 tech-font">APPLE RESEARCH</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-2">
+                            Framework de array otimizado para Apple Silicon, permitindo inferência de alta performance
+                            em Macs (M1/M2/M3).
+                        </p>
+                        <div class="flex">
+                            <span class="chip border-green-900 text-green-500">Metal API</span>
+                        </div>
+                    </div>
+                    <!-- llama.cpp -->
+                    <div class="tech-card border-ai">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="icon-container text-ai bg-ai !mb-0 !w-10 !h-10 !text-lg">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">llama.cpp</h3>
+                                <p class="text-[10px] text-gray-500 tech-font">GGML / GGUF</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-2">
+                            Motor de inferência C++ puro com suporte a quantização (GGUF), rodando eficientemente em CPU
+                            e GPU variadas.
+                        </p>
+                        <div class="flex">
+                            <span class="chip border-green-900 text-green-500">Cross-platform</span>
+                        </div>
+                    </div>
+                    <!-- Ollama -->
+                    <div class="tech-card border-ai">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="icon-container text-ai bg-ai !mb-0 !w-10 !h-10 !text-lg">
+                                <i class="fas fa-ghost"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Ollama</h3>
+                                <p class="text-[10px] text-gray-500 tech-font">MODEL RUNNER</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-2">
+                            Interface de alto nível para gerenciamento simplificado de modelos locais e compatibilidade
+                            de API.
+                        </p>
+                        <div class="flex">
+                            <span class="chip border-green-900 text-green-500">Easy Setup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div
+            class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-4">
+            <div>
+                ARCHITECTURE: <span class="text-white">MODULAR_MONOLITH</span>
+            </div>
+            <div class="flex gap-4">
+                <span class="flex items-center"><i class="fas fa-circle text-[8px] text-rust mr-2"></i>Backend</span>
+                <span class="flex items-center"><i class="fas fa-circle text-[8px] text-tauri mr-2"></i>Frontend</span>
+                <span class="flex items-center"><i class="fas fa-circle text-[8px] text-ai mr-2"></i>AI/ML</span>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

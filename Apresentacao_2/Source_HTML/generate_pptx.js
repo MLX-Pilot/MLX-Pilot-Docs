@@ -8,7 +8,7 @@ async function createPptx() {
   const pptx = new PptxGenJS();
   pptx.layout = 'LAYOUT_16x9';
   
-  for (let i = 1; i <= 23; i++) {
+  for (let i = 1; i <= 20; i++) {
     console.log(`Processing page ${i}...`);
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 720, deviceScaleFactor: 2 });
@@ -34,7 +34,7 @@ async function createPptx() {
   await pptx.writeFile({ fileName: outputPath });
   console.log('Cleaning up images...');
   
-  for (let i = 1; i <= 23; i++) {
+  for (let i = 1; i <= 20; i++) {
     const screenshotPath = path.resolve(__dirname, `slide_${i}.png`);
     if (fs.existsSync(screenshotPath)) {
         fs.unlinkSync(screenshotPath);

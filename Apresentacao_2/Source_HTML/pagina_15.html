@@ -52,274 +52,109 @@
             </div>
             <div class="text-right">
                 <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
-                    SPRINT: ATUAL // PI_IV
+                    FONTE: GITHUB ISSUES // MLX-PILOT/MLX-PILOT
                 </p>
                 <div class="flex gap-4 mt-2 justify-end text-xs tech-font text-gray-500">
-                    <span><span class="text-[#00ff41]">●</span> High Priority</span>
-                    <span><span class="text-[#00d9ff]">●</span> Medium Priority</span>
+                    <span><span class="text-[#00ff41]">●</span> Aberta</span>
+                    <span><span class="text-[#00d9ff]">●</span> Fechada</span>
                 </div>
             </div>
         </div>
-        <!-- Kanban Board -->
+        <!-- Kanban Board: gerado a partir das GitHub issues de MLX-Pilot/MLX-Pilot -->
         <div class="flex-1 min-h-0 grid grid-cols-3 gap-6 h-full pb-4">
-            <!-- Column 1: TODO (Future) -->
+            <!-- Column 1: issues abertas fora das sprints atuais -->
             <div class="kanban-col opacity-60">
                 <div class="kanban-header">
                     <h3 class="text-gray-400 font-bold uppercase tracking-wider text-sm">Backlog / Futuro</h3>
-                    <span class="bg-[#222] text-gray-500 text-xs px-2 py-1 rounded">5</span>
+                    <span class="bg-[#222] text-gray-500 text-xs px-2 py-1 rounded">2</span>
                 </div>
                 <div class="p-4 overflow-y-auto custom-scroll flex-1">
                     <div class="task-card priority-future">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">Agent</span>
-                            <span class="text-gray-600 text-[10px] tech-font">[S4] L</span>
+                            <span class="tag tag-rust">S6</span>
+                            <span class="text-gray-600 text-[10px] tech-font">#37</span>
                         </div>
-                        <p class="text-gray-300 text-sm font-semibold mb-1">Ferramentas sandboxed para o agente</p>
+                        <p class="text-gray-300 text-sm font-semibold mb-1">Sistema de plugins WASM para extensao</p>
                     </div>
                     <div class="task-card priority-future">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">Security</span>
-                            <span class="text-gray-600 text-[10px] tech-font">[S4] L</span>
+                            <span class="tag tag-rust">Sem sprint</span>
+                            <span class="text-gray-600 text-[10px] tech-font">#40</span>
                         </div>
-                        <p class="text-gray-300 text-sm font-semibold mb-1">Politicas, seguranca e secrets vault</p>
-                    </div>
-                    <div class="task-card priority-future">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">Core</span>
-                            <span class="text-gray-600 text-[10px] tech-font">[S4] L</span>
-                        </div>
-                        <p class="text-gray-300 text-sm font-semibold mb-1">Estruturar agent core local</p>
-                    </div>
-                    <div class="task-card priority-future">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">Logic</span>
-                            <span class="text-gray-600 text-[10px] tech-font">[S4] M</span>
-                        </div>
-                        <p class="text-gray-300 text-sm font-semibold mb-1">Sistema de skills e carregamento de SKILL.md</p>
-                    </div>
-                    <div class="task-card priority-future">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">API</span>
-                            <span class="text-gray-600 text-[10px] tech-font">[S4] L</span>
-                        </div>
-                        <p class="text-gray-300 text-sm font-semibold mb-1">API do agente integrada ao daemon</p>
+                        <p class="text-gray-300 text-sm font-semibold mb-1">Adicição de métricas e insights por hardware personalizado</p>
                     </div>
                 </div>
             </div>
-            <!-- Column 2: IN PROGRESS (High Priority - The Focus) -->
+            <!-- Column 2: issues abertas das sprints atuais -->
             <div class="kanban-col border-[#00ff41] relative" style="border-width: 1px; box-shadow: 0 0 20px rgba(0,255,65,0.05);">
                 <div class="absolute top-0 left-0 w-full h-1 bg-[#00ff41]"></div>
                 <div class="kanban-header bg-[#111]">
                     <div class="flex items-center gap-2">
                         <span class="dot-green animate-pulse"></span>
-                        <h3 class="text-white font-bold uppercase tracking-wider text-sm">Sprint Atual (Alta Prioridade)</h3>
+                        <h3 class="text-white font-bold uppercase tracking-wider text-sm">Em andamento (S7–S8)</h3>
                     </div>
-                    <span class="bg-[#00ff41] text-black font-bold text-xs px-2 py-1 rounded">5</span>
+                    <span class="font-bold text-xs px-2 py-1 rounded" style="background:#00ff41;color:#000">3</span>
                 </div>
                 <div class="p-4 overflow-y-auto custom-scroll flex-1 bg-[#0e0e0e]">
                     <div class="task-card priority-high">
                         <div class="flex justify-between items-start mb-2">
-                            <div class="flex gap-2">
-                                <span class="tag tag-rust">Benchmark</span>
-                            </div>
-                            <span class="text-[#00ff41] text-[10px] tech-font">#IN_PROGRESS</span>
+                            <span class="tag tag-core">S7</span>
+                            <span class="text-[#00ff41] text-[10px] tech-font">#34 · ABERTA</span>
                         </div>
-                        <p class="text-white text-sm font-bold mb-1">Benchmark comparativo de throughput e latencia</p>
-                        <p class="text-gray-400 text-xs mb-2">Métricas S3</p>
+                        <p class="text-white text-sm font-bold mb-1">Hardening de seguranca (chat e runtime)</p>
                     </div>
                     <div class="task-card priority-high">
                         <div class="flex justify-between items-start mb-2">
-                            <div class="flex gap-2">
-                                <span class="tag tag-core">Testing</span>
-                            </div>
-                            <span class="text-[#00ff41] text-[10px] tech-font">#IN_PROGRESS</span>
+                            <span class="tag tag-core">S8</span>
+                            <span class="text-[#00ff41] text-[10px] tech-font">#25 · ABERTA</span>
                         </div>
-                        <p class="text-white text-sm font-bold mb-1">Stress test de VRAM e estabilidade termica</p>
-                        <p class="text-gray-400 text-xs mb-2">Métricas S3</p>
+                        <p class="text-white text-sm font-bold mb-1">Canais oficiais e control plane</p>
                     </div>
-                    <div class="task-card priority-medium">
+                    <div class="task-card priority-high">
                         <div class="flex justify-between items-start mb-2">
-                            <div class="flex gap-2">
-                                <span class="tag tag-ui">UI</span>
-                            </div>
-                            <span class="text-[#00d9ff] text-[10px] tech-font">#IN_REVIEW</span>
+                            <span class="tag tag-core">S8</span>
+                            <span class="text-[#00ff41] text-[10px] tech-font">#32 · ABERTA</span>
                         </div>
-                        <p class="text-white text-sm font-bold mb-1">Console de observabilidade do agente</p>
-                    </div>
-                    <div class="task-card priority-medium">
-                        <div class="flex justify-between items-start mb-2">
-                            <div class="flex gap-2">
-                                <span class="tag tag-core">Logic</span>
-                            </div>
-                            <span class="text-[#00d9ff] text-[10px] tech-font">#IN_REVIEW</span>
-                        </div>
-                        <p class="text-white text-sm font-bold mb-1">Fallback AIRLLM para modelos pesados</p>
-                    </div>
-                    <div class="task-card priority-medium">
-                        <div class="flex justify-between items-start mb-2">
-                            <div class="flex gap-2">
-                                <span class="tag tag-ui">Dashboard</span>
-                            </div>
-                            <span class="text-[#00d9ff] text-[10px] tech-font">#IN_REVIEW</span>
-                        </div>
-                        <p class="text-white text-sm font-bold mb-1">Dashboard de observabilidade do daemon</p>
+                        <p class="text-white text-sm font-bold mb-1">Release gate e smoke tests do MVP final</p>
                     </div>
                 </div>
             </div>
-            <!-- Column 3: DONE (Completed) -->
+            <!-- Column 3: issues fechadas, mais recentes primeiro -->
             <div class="kanban-col opacity-60">
                 <div class="kanban-header">
                     <h3 class="text-gray-400 font-bold uppercase tracking-wider text-sm">Concluído</h3>
-                    <span class="bg-[#222] text-gray-500 text-xs px-2 py-1 rounded">20</span>
+                    <span class="bg-[#222] text-gray-500 text-xs px-2 py-1 rounded">34</span>
                 </div>
                 <div class="p-4 overflow-y-auto custom-scroll flex-1">
                     <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
+                            <span class="tag tag-ui">S5</span>
+                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> #36 · 01/10</span>
                         </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">OpenClaw com logs em tempo real e chat nativo</p>
+                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Integracao de workflow estilo n8n</p>
                     </div>
                     <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
+                            <span class="tag tag-ui">S7</span>
+                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> #31 · 26/09</span>
                         </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Diagnosticos, onboarding e install-state</p>
+                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Memoria local, sessao ativa e contexto</p>
                     </div>
                     <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
+                            <span class="tag tag-ui">S6</span>
+                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> #35 · 14/09</span>
                         </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Gerenciamento de modelos instalados</p>
+                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Agente autonomo com loop OODA</p>
                     </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Runtime controls e provider Ollama no OpenClaw</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">[S2] XL</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Multi-provider local (MLX, Ollama e llama.cpp)</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S2] S</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Busca web e produtividade no chat</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S2] S</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Historico de conversas com acoes basicas</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Hub de configuracoes para OpenClaw, NanoBot</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S2] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Refinar UI, UX e estilo do desktop</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">[S1] S</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Fundar workspace Rust</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S1] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Definir dominio core de chat</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">[S1] L</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Provider local MLX funcional</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S1] S</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Daemon com configuracao por ambiente</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S1] L</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Catalogo remoto e jobs de download</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S1] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Chat streaming e metricas</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-core">[S1] XS</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Changelog tecnico por usuario/commit</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-rust">[S1] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Integracao OpenClaw no daemon</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S1] M</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Rotas HTTP principais do backend</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S1] S</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">UI desktop base (shell + estilos)</p>
-                    </div>
-                    <div class="task-card priority-medium" style="border-left-color: #333; opacity: 0.8;">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="tag tag-ui">[S1] L</span>
-                            <span class="text-gray-600 text-[10px] tech-font"><i class="fas fa-check"></i> DONE</span>
-                        </div>
-                        <p class="text-gray-400 text-sm font-semibold mb-1" style="text-decoration: line-through;">Interacoes de Chat e Discover na UI</p>
-                    </div>
+                    <p class="text-gray-600 text-xs tech-font text-center mt-2">+ 31 issues concluídas desde a S1</p>
                 </div>
             </div>
         </div>
         <!-- Footer -->
         <div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4">
             <div>PROJECT: MLX-PILOT // STATUS: ON_TRACK</div>
-            <div>LAST_UPDATE: NOW</div>
+            <div>LAST_UPDATE: 04/10/2026</div>
         </div>
     </div>
 </body>

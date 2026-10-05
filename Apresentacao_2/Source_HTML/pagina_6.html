@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Diferenciais Técnicos</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MLX-Pilot - Backends Suportados</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
         body {
             margin: 0;
             padding: 0;
@@ -22,299 +19,308 @@
             background-color: #050505;
             color: #ffffff;
         }
-
+        
         .tech-font {
             font-family: 'Roboto Mono', monospace;
         }
 
-        /* Background Pattern */
+        /* Background Pattern - SVG based to avoid gradients */
         .bg-tech {
             background-color: #050505;
-            background-image:
-                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23111' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
-
-        /* Feature Card */
-        .feature-card {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid #222;
-            border-radius: 8px;
-            padding: 20px;
+        
+        .card {
+            background-color: #0f0f0f;
+            border: 1px solid #333;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #333, transparent);
-            transition: all 0.3s ease;
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #555;
+            z-index: 10;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(25, 25, 25, 0.8);
-            border-color: #444;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        .card-header {
+            padding: 24px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .feature-card.accent-green:hover {
+        .card-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card.neon-green:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
             border-color: #00ff41;
         }
 
-        .feature-card.accent-green:hover::before {
-            background: #00ff41;
-            box-shadow: 0 0 15px #00ff41;
-        }
-
-        .feature-card.accent-green .icon-box {
-            color: #00ff41;
-            border-color: rgba(0, 255, 65, 0.2);
-        }
-
-        .feature-card.accent-blue:hover {
+        .card.neon-blue:hover {
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
             border-color: #00d9ff;
         }
 
-        .feature-card.accent-blue:hover::before {
-            background: #00d9ff;
-            box-shadow: 0 0 15px #00d9ff;
-        }
-
-        .feature-card.accent-blue .icon-box {
-            color: #00d9ff;
-            border-color: rgba(0, 217, 255, 0.2);
-        }
-
-        .feature-card.accent-white:hover {
+        .card.neon-white:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             border-color: #ffffff;
         }
 
-        .feature-card.accent-white:hover::before {
-            background: #ffffff;
-            box-shadow: 0 0 15px #ffffff;
-        }
-
-        .feature-card.accent-white .icon-box {
-            color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
         .icon-box {
-            width: 48px;
-            height: 48px;
-            border: 1px solid #333;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            border-radius: 8px;
+            background-color: #1a1a1a;
+            font-size: 24px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
             margin-bottom: 16px;
-            background: rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
-        .feature-card:hover .icon-box {
-            transform: scale(1.1);
-            background: rgba(0, 0, 0, 0.5);
+        .feature-icon {
+            margin-right: 12px;
+            margin-top: 4px;
+            font-size: 12px;
         }
 
-        /* Tech decorative elements */
-        .corner-decoration {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .corner-decoration {
-            border-color: inherit;
-            width: 20px;
-            height: 20px;
-        }
-
-        .top-right {
-            top: 8px;
-            right: 8px;
-            border-bottom: none;
-            border-left: none;
-        }
-
-        .bottom-left {
-            bottom: 8px;
-            left: 8px;
-            border-top: none;
-            border-right: none;
-        }
-
-        .code-snippet {
-            font-family: 'Roboto Mono', monospace;
+        .tag {
             font-size: 10px;
-            color: #666;
-            margin-top: auto;
-            border-top: 1px solid #222;
-            padding-top: 12px;
-            opacity: 0.7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 16px;
+        .status-indicator {
+            position: absolute;
+            top: 0;
+            right: 24px;
+            width: 4px;
+            height: 4px;
+            background-color: #333;
+        }
+        
+        .card:hover .status-indicator {
             height: 100%;
+            transition: height 0.3s ease;
         }
+        
+        .card.neon-green:hover .status-indicator { background-color: #00ff41; }
+        .card.neon-blue:hover .status-indicator { background-color: #00d9ff; }
+        .card.neon-white:hover .status-indicator { background-color: #fff; }
 
-        .grid-span-2 {
-            grid-column: span 2;
+        /* Hardware visualizer */
+        .hardware-viz {
+            height: 4px;
+            width: 100%;
+            background-color: #222;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
         }
+        
+        .hardware-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 1s ease-out;
+        }
+        
+        .card:hover .hardware-bar { width: 80%; }
     </style>
-</head>
-
+</link></head>
 <body>
-    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-tech">
-        <!-- Decorative Background Elements -->
-        <!-- Header -->
-        <div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
-            <div>
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
-                        <i class="fas fa-code-branch mr-2"></i>Core Features
+<div class="w-full h-full relative flex flex-col p-12 bg-tech">
+<!-- Header -->
+<div class="relative z-10 mb-10 flex justify-between items-end border-b border-gray-800 pb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-[#00ff41] tech-font text-xs font-bold tracking-widest uppercase">
+<i class="fas fa-microchip mr-2"></i>Multi-Provider Architecture
                     </span>
-                </div>
-                <h1 class="text-5xl font-bold text-white tracking-tight">
-                    Diferenciais <span class="text-[#00ff41]">Técnicos</span>
-                </h1>
-            </div>
-            <div class="text-right">
-                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
-                    SYSTEM_CAPABILITIES::V1.0 // INNOVATION_MODULE
+</div>
+<h1 class="text-5xl font-bold text-white tracking-tight">
+                    Backends <span class="text-gray-500">Suportados</span>
+</h1>
+</div>
+<div class="text-right">
+<p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    PROVIDER_SELECTION_MODE = "AUTO"
                 </p>
+</div>
+</div>
+<!-- Main Content: 3 Columns -->
+<div class="flex-1 grid grid-cols-3 gap-8 z-10 pb-4">
+<!-- Column 1: MLX -->
+<div class="card neon-green">
+<div class="status-indicator"></div>
+<div class="card-header">
+<div>
+<h2 class="text-2xl font-bold text-white">MLX</h2>
+<p class="text-[#00ff41] text-xs tech-font mt-1">APPLE SILICON NATIVE</p>
+</div>
+<div class="icon-box text-[#00ff41]">
+<i class="fab fa-apple"></i>
+</div>
+</div>
+<div class="card-body">
+<div class="mb-6">
+<p class="text-gray-400 text-sm mb-4">Framework de arrays otimizado para arquitetura Apple, permitindo acesso direto à memória unificada.</p>
+<div class="flex flex-wrap gap-2">
+<span class="tag text-[#00ff41]">Metal API</span>
+<span class="tag text-gray-400">Unified Memory</span>
+</div>
+</div>
+<div class="space-y-3 mt-2">
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00ff41]"></i>
+<span>Otimização nativa para chips M1/M2/M3</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00ff41]"></i>
+<span>Lazy evaluation para alta performance</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00ff41]"></i>
+<span>Suporte a modelos Fine-tuned localmente</span>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="flex justify-between text-[10px] text-gray-500 tech-font mb-1">
+<span>NPU UTILIZATION</span>
+<span>HIGH</span>
+</div>
+<div class="hardware-viz">
+<div class="hardware-bar" style="background-color: #00ff41;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 2: llama.cpp -->
+<div class="card neon-blue">
+<div class="status-indicator"></div>
+<div class="card-header">
+<div>
+<h2 class="text-2xl font-bold text-white">llama.cpp</h2>
+<p class="text-[#00d9ff] text-xs tech-font mt-1">CROSS-PLATFORM CORE</p>
+</div>
+<div class="icon-box text-[#00d9ff]">
+<i class="fas fa-code"></i>
+</div>
+</div>
+<div class="card-body">
+<div class="mb-6">
+<p class="text-gray-400 text-sm mb-4">Motor de inferência C++ puro focado em máxima eficiência e compatibilidade de hardware.</p>
+<div class="flex flex-wrap gap-2">
+<span class="tag text-[#00d9ff]">GGUF Format</span>
+<span class="tag text-gray-400">CPU + GPU</span>
+</div>
+</div>
+<div class="space-y-3 mt-2">
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00d9ff]"></i>
+<span>Quantização Avançada (4-bit, 8-bit)</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00d9ff]"></i>
+<span>Suporte Híbrido (Offload parcial p/ GPU)</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-[#00d9ff]"></i>
+<span>Execução em hardware legado (AVX2)</span>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="flex justify-between text-[10px] text-gray-500 tech-font mb-1">
+<span>COMPATIBILITY</span>
+<span>MAX</span>
+</div>
+<div class="hardware-viz">
+<div class="hardware-bar" style="background-color: #00d9ff;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column 3: Ollama -->
+<div class="card neon-white">
+<div class="status-indicator"></div>
+<div class="card-header">
+<div>
+<h2 class="text-2xl font-bold text-white">Ollama</h2>
+<p class="text-gray-300 text-xs tech-font mt-1">SERVICE INTEGRATION</p>
+</div>
+<div class="icon-box text-white">
+<i class="fas fa-terminal"></i>
+</div>
+</div>
+<div class="card-body">
+<div class="mb-6">
+<p class="text-gray-400 text-sm mb-4">Camada de serviço que simplifica o gerenciamento de modelos e exposição via API.</p>
+<div class="flex flex-wrap gap-2">
+<span class="tag text-white">REST API</span>
+<span class="tag text-gray-400">Model Manager</span>
+</div>
+</div>
+<div class="space-y-3 mt-2">
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-white"></i>
+<span>Download e gestão automática de Blobs</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-white"></i>
+<span>Interface unificada para múltiplos modelos</span>
+</div>
+<div class="feature-item">
+<i class="fas fa-check feature-icon text-white"></i>
+<span>Fácil integração com ferramentas externas</span>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="flex justify-between text-[10px] text-gray-500 tech-font mb-1">
+<span>EASE OF USE</span>
+<span>HIGH</span>
+</div>
+<div class="hardware-viz">
+<div class="hardware-bar" style="background-color: #ffffff;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4">
+<div>
+<span class="mr-4">BACKEND_STATUS: ACTIVE</span>
+<span class="text-[#00ff41]">●</span> <span class="mr-2">MLX</span>
+<span class="text-[#00d9ff]">●</span> <span class="mr-2">LLAMA</span>
+<span class="text-white">●</span> <span>OLLAMA</span>
+</div>
+<div>
+                PI_IV // ARCHITECTURE_V1
             </div>
-        </div>
-        <!-- Main Content: Grid Layout -->
-        <div class="flex-1 z-10 grid-container pb-2">
-            <!-- Item 1: Arquitetura Modular -->
-            <div class="feature-card accent-green">
-                <div class="corner-decoration top-right"></div>
-                <div class="corner-decoration bottom-left"></div>
-                <div class="icon-box">
-                    <i class="fas fa-cubes"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">Arquitetura Modular</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Sistema plugável onde cada componente (UI, Core, Providers) opera de forma desacoplada, facilitando
-                    manutenção e upgrades.
-                </p>
-                <div class="code-snippet">
-                    trait Provider { fn infer(&amp;self, prompt: str); }
-                </div>
-            </div>
-            <!-- Item 2: Multi-Provider -->
-            <div class="feature-card accent-blue">
-                <div class="corner-decoration top-right"></div>
-                <div class="corner-decoration bottom-left"></div>
-                <div class="icon-box">
-                    <i class="fas fa-network-wired"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">Multi-Provider</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Camada de abstração unificada que permite alternar entre backends (MLX, Llama, Ollama) em tempo de
-                    execução sem reiniciar.
-                </p>
-                <div class="code-snippet">
-                    let backend = ProviderFactory::create(config.type);
-                </div>
-            </div>
-            <!-- Item 3: Streaming SSE -->
-            <div class="feature-card accent-green">
-                <div class="corner-decoration top-right"></div>
-                <div class="corner-decoration bottom-left"></div>
-                <div class="icon-box">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">Streaming Real-time</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Implementação eficiente de Server-Sent Events (SSE) para entrega de tokens com latência mínima na
-                    interface do usuário.
-                </p>
-                <div class="code-snippet">
-                    response.stream().map(|chunk| Event::default().data(chunk))
-                </div>
-            </div>
-            <!-- Item 4: Hugging Face (Wider) -->
-            <div class="feature-card accent-white grid-span-2 flex-row gap-6 items-center">
-                <div class="corner-decoration top-right"></div>
-                <div class="corner-decoration bottom-left"></div>
-                <div class="flex flex-col justify-between h-full flex-1">
-                    <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="icon-box !mb-0">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Catálogo Hugging Face</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Integração nativa com a API do Hugging Face para busca, filtragem e download automatizado de
-                            modelos GGUF e MLX diretamente pela interface.
-                        </p>
-                    </div>
-                    <div class="code-snippet mt-4">
-                        GET https://huggingface.co/api/models?search=llama-3&amp;filter=gguf
-                    </div>
-                </div>
-                <div
-                    class="h-full w-1/3 bg-black bg-opacity-30 rounded border border-gray-800 p-3 tech-font text-[10px] text-gray-500 overflow-hidden relative">
-                    <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-green-500"></div>
-                    <p>&gt; searching models...</p>
-                    <p class="text-[#00d9ff]">&gt; found: llama-3-8b-instruct</p>
-                    <p class="text-[#00d9ff]">&gt; found: mistral-7b-v0.3</p>
-                    <p>&gt; downloading metadata...</p>
-                    <p class="text-gray-600">... done (23ms)</p>
-                </div>
-            </div>
-            <!-- Item 5: Agente Autônomo -->
-            <div class="feature-card accent-blue">
-                <div class="corner-decoration top-right"></div>
-                <div class="corner-decoration bottom-left"></div>
-                <div class="icon-box">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2">Base para Agentes</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                    Estrutura preparada para loop de feedback e tool-use, pavimentando o caminho para agentes autônomos
-                    locais.
-                </p>
-                <div class="code-snippet">
-                    agent.think().act().observe();
-                </div>
-            </div>
-        </div>
-        <!-- Footer -->
-        <div
-            class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
-            <div>
-                <span class="text-[#00ff41]">●</span> STABLE
-                <span class="mx-2">|</span>
-                <span class="text-[#00d9ff]">●</span> EXPERIMENTAL
-            </div>
-            <div>
-                TECH_STACK // RUST_TAURI_AXUM
-            </div>
-        </div>
-    </div>
+</div>
+</div>
 </body>
-
 </html>

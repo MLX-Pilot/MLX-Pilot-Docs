@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Loop OODA</title>
+    <title>MLX-Pilot - Integração com Workflow estilo n8n</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
@@ -196,23 +196,19 @@
 .node{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:8px 12px;color:#ddd;white-space:nowrap}
 .node.on{border-color:var(--a);color:var(--a)}
 .arr{color:#555}
+.pbody.shot-body{padding:0;gap:0}.shot{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
 </style></head>
-<body><div class="np bg-pattern" style="--a:#00ff41">
+<body><div class="np bg-pattern" style="--a:#00d9ff">
 <div class="flex justify-between items-end border-b border-gray-800 pb-5">
- <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00ff41"><i class="fas fa-rotate mr-2"></i>Autonomous Agent</span></div>
- <h1 class="text-4xl font-bold text-white tracking-tight">Loop <span class="text-gray-500">OODA</span></h1></div>
- <div class="text-right"><p class="text-gray-400 text-sm tech-font">PR #35 · COMMIT 0f34d64</p></div></div>
+ <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00d9ff"><i class="fas fa-diagram-project mr-2"></i>Workflow Automation</span></div>
+ <h1 class="text-4xl font-bold text-white tracking-tight">Integração com <span class="text-gray-500">Workflow estilo n8n</span></h1></div>
+ <div class="text-right"><p class="text-gray-400 text-sm tech-font">ISSUE #36 · PR #41</p></div></div>
 <div class="np-main">
- <div><p class="text-gray-300 text-sm leading-relaxed">Implementação de ciclo OODA (Observe-Orient-Decide-Act) para tarefas multi-etapa. Dentro de um loop OODA, a IA pode desmembrar um objetivo complexo em várias sub-rotinas e percorrer todas elas de forma automatizada até terminar a tarefa.</p><div class="hl"><div class="hi"><i class="fas fa-list-check"></i></div><div><div class="text-white font-bold text-sm">Tarefas multi-etapa</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Objetivo complexo dividido em sub-rotinas.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-sitemap"></i></div><div><div class="text-white font-bold text-sm">Ciclo automatizado</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Observe, Orient, Decide e Act a cada sub-rotina.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-flag-checkered"></i></div><div><div class="text-white font-bold text-sm">Até concluir</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Percorre todas as sub-rotinas até o fim da tarefa.</div></div></div></div>
- <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">ooda_loop</span></div><div class="pbody"><div class="row" style="gap:12px;flex:1"><div><svg viewBox="0 0 240 240" width="230" height="230"><defs><marker id="m" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#00ff41"/></marker></defs>
-<circle cx="120" cy="120" r="78" fill="none" stroke="#333" stroke-dasharray="4 4"/>
-<path d="M148,46 A78,78 0 0 1 194,92" fill="none" stroke="#00ff41" marker-end="url(#m)"/><path d="M194,148 A78,78 0 0 1 148,194" fill="none" stroke="#00ff41" marker-end="url(#m)"/>
-<path d="M92,194 A78,78 0 0 1 46,148" fill="none" stroke="#00ff41" marker-end="url(#m)"/><path d="M46,92 A78,78 0 0 1 92,46" fill="none" stroke="#00ff41" marker-end="url(#m)"/>
-<g font-family="Roboto Mono" font-size="10" fill="#ddd" text-anchor="middle"><g fill="#0b0b0b" stroke="#00ff41"><rect x="90" y="30" width="60" height="26" rx="6"/><rect x="170" y="107" width="60" height="26" rx="6"/><rect x="90" y="184" width="60" height="26" rx="6"/><rect x="10" y="107" width="60" height="26" rx="6"/></g>
-<text x="120" y="47">Observe</text><text x="200" y="124">Orient</text><text x="120" y="201">Decide</text><text x="40" y="124">Act</text><text x="120" y="124" fill="#888">OBJETIVO</text></g></svg></div><div class="flex flex-col gap-2" style="flex:1"><div class="lbl">OBJETIVO COMPLEXO</div><div class="node row" style="gap:10px"><i class="fas fa-check" style="color:#00ff41"></i>Sub-rotina 1</div><div class="node row" style="gap:10px"><i class="fas fa-check" style="color:#00ff41"></i>Sub-rotina 2</div><div class="node row" style="gap:10px"><i class="fas fa-play" style="color:#00d9ff"></i>Sub-rotina 3</div><div class="node row" style="gap:10px"><i class="fas fa-ellipsis" style="color:#555"></i>Sub-rotina N</div><div class="text-[11px] mt-2" style="color:#00ff41">&gt; percorre tudo até concluir a tarefa</div></div></div></div></div>
+ <div><p class="text-gray-300 text-sm leading-relaxed">O MLX-Pilot possui integração direta com um workflow estilo n8n local, podendo gerar workflows via prompt e um editor visual nativo para criar um workflow do zero.</p><div class="hl"><div class="hi"><i class="fas fa-server"></i></div><div><div class="text-white font-bold text-sm">Workflow estilo n8n</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Integração direta com a instância local de workflow.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-wand-magic-sparkles"></i></div><div><div class="text-white font-bold text-sm">Workflow via prompt</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Descreva a automação e o workflow é gerado.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-pen-ruler"></i></div><div><div class="text-white font-bold text-sm">Editor visual nativo</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Crie um workflow do zero dentro do app.</div></div></div></div>
+ <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">MLX Pilot — Workflow estilo n8n · 127.0.0.1:5678</span></div><div class="pbody shot-body"><img class="shot" src="prints/s11_n8n_editor.png" alt="Editor visual de workflows do MLX Pilot com fluxo Webhook, MLX Pilot Agent, Edit Fields e Respond to Webhook" /></div></div>
 </div>
-<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #35</span><span class="ref"><i class="fas fa-code-commit"></i>0f34d64</span></div>
+<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-circle-dot"></i>Issue #36</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #41</span></div>
 <div class="flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-3 mt-3">
- <div>SYSTEM STATUS: <span style="color:#00ff41">DELIVERED</span></div>
+ <div>SYSTEM STATUS: <span style="color:#00d9ff">DELIVERED</span></div>
  <div class="flex gap-4"><span><i class="fab fa-rust mr-1"></i>RUST</span><span><i class="fab fa-js mr-1"></i>TAURI</span><span><i class="fab fa-apple mr-1"></i>METAL</span></div></div>
 </div></body></html>

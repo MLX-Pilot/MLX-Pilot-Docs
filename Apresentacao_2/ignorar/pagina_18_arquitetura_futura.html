@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MLX-Pilot - Arquitetura Futura</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; width: 1280px; height: 720px; overflow: hidden; font-family: 'Montserrat', sans-serif; background-color: #050505; color: #ffffff; }
+        .tech-font { font-family: 'Roboto Mono', monospace; }
+        .bg-tech-grid { background-color: #050505; background-image: linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px); background-size: 40px 40px; }
+        .diagram-container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; position: relative; z-index: 10; }
+        .arch-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 2; }
+        .arch-box:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); background: #161616; }
+        .box-title { font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .box-desc { font-size: 10px; color: #888; font-family: 'Roboto Mono', monospace; }
+        .box-icon { font-size: 20px; margin-bottom: 8px; }
+        .box-ui { width: 280px; border-color: #00d9ff; color: #00d9ff; }
+        .box-ui:hover { box-shadow: 0 0 15px rgba(0, 217, 255, 0.2); }
+        .box-core { width: 320px; height: auto; min-height: 100px; border-color: #00ff41; color: #00ff41; background: rgba(0, 255, 65, 0.05); }
+        .box-core:hover { box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+        .box-side { width: 140px; border-color: #555; color: #ccc; }
+        .box-security { border-color: #ff4757; color: #ff4757; }
+        .box-observability { border-color: #eccc68; color: #eccc68; }
+        .box-module { width: 200px; border-color: #fff; color: #fff; }
+        .box-external { width: 180px; border-style: dashed; border-color: #666; color: #aaa; background: transparent; }
+        .svg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: visible; }
+        .connector-line { stroke: #333; stroke-width: 2; fill: none; }
+        .connector-flow { stroke: #00ff41; stroke-width: 1; stroke-dasharray: 5; animation: dash 30s linear infinite; opacity: 0.6; fill: none; }
+        @keyframes dash { to { stroke-dashoffset: -1000; } }
+        .layer-1 { margin-bottom: 20px; }
+        .layer-2 { display: flex; gap: 40px; align-items: center; margin-bottom: 30px; }
+        .layer-3 { display: flex; gap: 120px; }
+        .layer-4 { display: flex; gap: 120px; margin-top: 30px; }
+        .group-col { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    </style>
+</head>
+<body>
+    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-tech-grid">
+        <!-- Header -->
+        <div class="relative z-10 mb-2 flex justify-between items-end border-b border-gray-800 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
+                        <i class="fas fa-sitemap mr-2"></i>System Architecture v2.0
+                    </span>
+                </div>
+                <h1 class="text-5xl font-bold text-white tracking-tight">Arquitetura <span class="text-gray-500">Futura</span></h1>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">NEXT_GEN // AGENTIC_WORKFLOWS</p>
+            </div>
+        </div>
+        <!-- Diagram Content -->
+        <div class="flex-1 diagram-container" id="diagram-container">
+            <svg id="svg-layer" class="svg-layer"></svg>
+            <!-- Layer 1: Presentation -->
+            <div class="layer-1">
+                <div class="arch-box box-ui" id="el-ui">
+                    <i class="fas fa-desktop box-icon"></i>
+                    <p class="box-title">UI Desktop</p>
+                    <p class="box-desc">Tauri + React (Frontend)</p>
+                </div>
+            </div>
+            <!-- Layer 2: Application Core -->
+            <div class="layer-2">
+                <div class="arch-box box-side box-security" id="el-sec">
+                    <i class="fas fa-shield-alt box-icon"></i>
+                    <p class="box-title">Segurança</p>
+                    <p class="box-desc">Auth &amp; Sandbox</p>
+                </div>
+                <div class="arch-box box-core" id="el-core">
+                    <i class="fab fa-rust box-icon" style="font-size: 32px;"></i>
+                    <p class="box-title">Daemon Core</p>
+                    <p class="box-desc">HTTP Server (Axum) • State Management • Event Loop</p>
+                </div>
+                <div class="arch-box box-side box-observability" id="el-obs">
+                    <i class="fas fa-eye box-icon"></i>
+                    <p class="box-title">Observabilidade</p>
+                    <p class="box-desc">Metrics &amp; Logs</p>
+                </div>
+            </div>
+            <!-- Layer 3: Logic Modules -->
+            <div class="layer-3">
+                <div class="group-col">
+                    <div class="arch-box box-module" id="el-prov">
+                        <i class="fas fa-microchip box-icon text-[#00ff41]"></i>
+                        <p class="box-title">Módulo Providers</p>
+                        <p class="box-desc">Interface Unificada de Inferência</p>
+                    </div>
+                    <div class="arch-box box-external" id="el-back">
+                        <i class="fas fa-server box-icon"></i>
+                        <p class="box-title">Backends</p>
+                        <p class="box-desc">MLX | llama.cpp | Ollama</p>
+                    </div>
+                </div>
+                <div class="group-col">
+                    <div class="arch-box box-module" id="el-agent">
+                        <i class="fas fa-robot box-icon text-[#00d9ff]"></i>
+                        <p class="box-title">Agente Autônomo</p>
+                        <p class="box-desc">Reasoning Loop &amp; Tools</p>
+                    </div>
+                    <div class="arch-box box-external" id="el-n8n" style="border-color: #ff9f43; color: #ff9f43;">
+                        <i class="fas fa-project-diagram box-icon"></i>
+                        <p class="box-title">Workflow estilo n8n</p>
+                        <p class="box-desc">Workflow Automation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Legend / Footer -->
+        <div class="absolute bottom-20 left-12 right-12 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4">
+            <div class="flex gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 border border-[#00d9ff] rounded-sm"></div>
+                    <span>Presentation</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-[#00ff41] bg-opacity-20 border border-[#00ff41] rounded-sm"></div>
+                    <span>Core Logic</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 border border-white rounded-sm"></div>
+                    <span>Modules</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 border border-dashed border-gray-500 rounded-sm"></div>
+                    <span>External/Integration</span>
+                </div>
+            </div>
+            <div>ARCHITECTURE_DIAGRAM // SCALE_READY</div>
+        </div>
+    </div>
+    <script>
+        function drawConnections() {
+            const svg = document.getElementById('svg-layer');
+            const container = document.getElementById('diagram-container');
+            if (!svg || !container) return;
+            
+            const cRect = container.getBoundingClientRect();
+            
+            function getPoint(id, edge) {
+                const el = document.getElementById(id);
+                if (!el) return {x:0, y:0};
+                const rect = el.getBoundingClientRect();
+                const x = rect.left - cRect.left;
+                const y = rect.top - cRect.top;
+                
+                if (edge === 'bottom') return { x: x + rect.width/2, y: y + rect.height };
+                if (edge === 'top') return { x: x + rect.width/2, y: y };
+                if (edge === 'left') return { x: x, y: y + rect.height/2 };
+                if (edge === 'right') return { x: x + rect.width, y: y + rect.height/2 };
+                return { x: x + rect.width/2, y: y + rect.height/2 };
+            }
+            
+            let defs = `<defs>
+                <marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refX="9" refY="3.5">
+                    <polygon fill="#333" points="0 0, 10 3.5, 0 7"></polygon>
+                </marker>
+                <marker id="arrowhead-green" markerheight="7" markerwidth="10" orient="auto" refX="9" refY="3.5">
+                    <polygon fill="#00ff41" points="0 0, 10 3.5, 0 7"></polygon>
+                </marker>
+            </defs>`;
+            
+            let paths = "";
+            let flows = "";
+            
+            function connect(id1, edge1, id2, edge2, type) {
+                const p1 = getPoint(id1, edge1);
+                const p2 = getPoint(id2, edge2);
+                let d = "";
+                
+                if (type === 'straight') {
+                    d = `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`;
+                } else if (type === 'elbow-down') {
+                    const midY = p1.y + (p2.y - p1.y) / 2;
+                    d = `M ${p1.x} ${p1.y} L ${p1.x} ${midY} L ${p2.x} ${midY} L ${p2.x} ${p2.y}`;
+                }
+                
+                paths += `<path class="connector-line" d="${d}" marker-end="url(#arrowhead)"></path>`;
+                flows += `<path class="connector-flow" d="${d}"></path>`;
+            }
+            
+            connect('el-ui', 'bottom', 'el-core', 'top', 'straight');
+            connect('el-sec', 'right', 'el-core', 'left', 'straight');
+            connect('el-obs', 'left', 'el-core', 'right', 'straight');
+            connect('el-core', 'bottom', 'el-prov', 'top', 'elbow-down');
+            connect('el-core', 'bottom', 'el-agent', 'top', 'elbow-down');
+            connect('el-prov', 'bottom', 'el-back', 'top', 'straight');
+            connect('el-agent', 'bottom', 'el-n8n', 'top', 'straight');
+            
+            svg.innerHTML = defs + paths + flows;
+        }
+        
+        window.addEventListener('load', drawConnections);
+        window.addEventListener('resize', drawConnections);
+        if (document.fonts) {
+            document.fonts.ready.then(drawConnections);
+        }
+        setTimeout(drawConnections, 100);
+        setTimeout(drawConnections, 500);
+    </script>
+</body>
+</html>

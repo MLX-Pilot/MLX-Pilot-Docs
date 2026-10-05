@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Simulação de Hardware</title>
+    <title>MLX-Pilot - Demonstração Funcional</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
@@ -177,37 +177,130 @@
             font-size: 10px;
             margin-top: 4px;
         }
-    
-.np{width:1280px;height:720px;box-sizing:border-box;padding:30px 48px 22px;display:flex;flex-direction:column;position:relative}
-.np-main{flex:1;min-height:0;display:grid;grid-template-columns:5fr 7fr;gap:28px;margin-top:20px}
-.hl{display:flex;gap:14px;margin-top:18px}
-.hi{width:40px;height:40px;flex:none;border:1px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--a);background:#111}
-.panel{border:1px solid #222;border-radius:10px;background:rgba(20,20,20,.7);display:flex;flex-direction:column;overflow:hidden}
-.pbar{padding:10px 14px;border-bottom:1px solid #222;font:11px 'Roboto Mono',monospace;color:#777;display:flex;gap:6px;align-items:center}
-.dot{width:8px;height:8px;border-radius:50%;background:#333}
-.pbody{flex:1;padding:16px;font-family:'Roboto Mono',monospace;font-size:12px;color:#aaa;display:flex;flex-direction:column;gap:10px;min-height:0}
-.chip{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:6px 10px;color:#ddd;display:inline-block}
-.chip.on{border-color:var(--a);color:var(--a);background:rgba(255,255,255,.04)}
-.ref{border:1px solid #2a2a2a;border-radius:6px;padding:5px 10px;font:11px 'Roboto Mono',monospace;color:#ccc;background:#0d0d0d;display:inline-block;margin-right:8px}
-.ref i{color:var(--a);margin-right:6px}
-.lbl{font-size:10px;letter-spacing:.12em;color:#666}
-.bar{height:8px;border-radius:4px;background:#1c1c1c;overflow:hidden}.bar>div{height:100%;background:#444}.bar.on>div{background:var(--a)}
-.row{display:flex;align-items:center;gap:10px}
-.node{border:1px solid #333;background:#0b0b0b;border-radius:6px;padding:8px 12px;color:#ddd;white-space:nowrap}
-.node.on{border-color:var(--a);color:var(--a)}
-.arr{color:#555}
-</style></head>
-<body><div class="np bg-pattern" style="--a:#00d9ff">
-<div class="flex justify-between items-end border-b border-gray-800 pb-5">
- <div><div class="mb-2"><span class="tech-font text-xs font-bold tracking-widest uppercase" style="color:#00d9ff"><i class="fas fa-microchip mr-2"></i>Hardware Simulation</span></div>
- <h1 class="text-4xl font-bold text-white tracking-tight">Simulação de Desempenho <span class="text-gray-500">de Hardware</span></h1></div>
- <div class="text-right"><p class="text-gray-400 text-sm tech-font">FEATURE // PR #42</p></div></div>
-<div class="np-main">
- <div><p class="text-gray-300 text-sm leading-relaxed">Adição de peças de CPU, RAM, GPU, VRAM e outros para simular como diferentes modelos de IA performam melhor em diferentes combinações de hardware.</p><div class="hl"><div class="hi"><i class="fas fa-memory"></i></div><div><div class="text-white font-bold text-sm">Peças configuráveis</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">CPU, RAM, GPU, VRAM e demais componentes.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-sliders"></i></div><div><div class="text-white font-bold text-sm">Combinações de hardware</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Compara cenários montados a partir das peças.</div></div></div><div class="hl"><div class="hi"><i class="fas fa-chart-simple"></i></div><div><div class="text-white font-bold text-sm">Modelo × hardware</div><div class="text-gray-500 text-xs mt-1 leading-relaxed">Mostra qual combinação favorece cada modelo de IA.</div></div></div></div>
- <div class="panel"><div class="pbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="ml-3">hardware_simulator</span></div><div class="pbody"><div class="lbl">PEÇAS SIMULADAS</div><div><span class="chip on mr-2">CPU</span><span class="chip on mr-2">RAM</span><span class="chip on mr-2">GPU</span><span class="chip on mr-2">VRAM</span><span class="chip on mr-2">+ outros</span></div><div class="lbl mt-2">DESEMPENHO POR COMBINAÇÃO (ILUSTRATIVO)</div><div style="display:grid;grid-template-columns:70px 1fr 1fr 1fr;gap:12px;align-items:center"><div></div><div class="chip" style="text-align:center">Config A</div><div class="chip" style="text-align:center">Config B</div><div class="chip" style="text-align:center">Config C</div><div class="text-gray-300">Modelo 1</div><div class="bar"><div style="width:35%"></div></div><div class="bar"><div style="width:60%"></div></div><div class="bar on"><div style="width:90%"></div></div><div class="text-gray-300">Modelo 2</div><div class="bar on"><div style="width:80%"></div></div><div class="bar"><div style="width:55%"></div></div><div class="bar"><div style="width:40%"></div></div><div class="text-gray-300">Modelo 3</div><div class="bar"><div style="width:30%"></div></div><div class="bar on"><div style="width:85%"></div></div><div class="bar"><div style="width:50%"></div></div></div><div class="text-[11px] mt-auto" style="color:#00ff41">&gt; melhor combinação varia conforme o modelo</div></div></div>
-</div>
-<div class="mt-4 row"><span class="lbl mr-2 tech-font">RASTREABILIDADE</span><span class="ref"><i class="fas fa-code-pull-request"></i>PR #42</span><span class="ref"><i class="fas fa-circle-dot"></i>Issue</span><span class="ref"><i class="fas fa-code-commit"></i>d6951c4</span><span class="ref"><i class="fas fa-code-commit"></i>1cce5ea</span></div>
-<div class="flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-3 mt-3">
- <div>SYSTEM STATUS: <span style="color:#00d9ff">DELIVERED</span></div>
- <div class="flex gap-4"><span><i class="fab fa-rust mr-1"></i>RUST</span><span><i class="fab fa-js mr-1"></i>TAURI</span><span><i class="fab fa-apple mr-1"></i>METAL</span></div></div>
-</div></body></html>
+            /* Cards com print real da aplicação */
+        .demo-card { flex-direction: row; gap: 16px; padding: 16px; }
+        .card-text { width: 205px; flex: none; display: flex; flex-direction: column; }
+        .card-text .card-header { margin-bottom: 10px; }
+        .card-text h3 { font-size: 1.05rem; line-height: 1.3; }
+        .card-text .icon-wrapper { width: 36px; height: 36px; font-size: 16px; flex: none; }
+        .card-text p.text-sm { font-size: 12px; line-height: 1.5; }
+        .shot-wrap { flex: 1; min-width: 0; border: 1px solid #222; border-radius: 6px; overflow: hidden; background: #050505; }
+        .shot { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-pattern">
+        <!-- Header -->
+        <div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
+                        <i class="fas fa-play-circle mr-2"></i>Live Demo Features
+                    </span>
+                </div>
+                <h1 class="text-4xl font-bold text-white tracking-tight">
+                    Demonstração <span class="text-gray-500">Funcional</span>
+                </h1>
+            </div>
+            <div class="text-right">
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
+                    CURRENT_BUILD: v0.8.2-alpha
+                </p>
+            </div>
+        </div>
+        <!-- Main Grid Content -->
+        <div class="flex-1 card-grid z-10">
+            <!-- Card 1: Chat Streaming -->
+            <div class="demo-card green-accent">
+                <div class="card-text">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Chat com Streaming</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">REAL-TIME TOKEN GENERATION</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00ff41]">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Interface de chat responsiva utilizando Server-Sent Events (SSE) para exibir tokens assim que são
+                    inferidos, sem latência perceptível.
+                </p>
+                </div>
+                <div class="shot-wrap"><img class="shot" src="prints/s07_chat.png" alt="Chat do MLX Pilot gerando resposta em streaming com modelo local" /></div>
+            </div>
+            <!-- Card 2: Download Manager -->
+            <div class="demo-card blue-accent">
+                <div class="card-text">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Model Manager</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">HUGGING FACE INTEGRATION</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00d9ff]">
+                        <i class="fas fa-cloud-download-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Catálogo integrado para busca e download direto de modelos (GGUF/MLX) com verificação automática de
+                    hash e compatibilidade.
+                </p>
+                </div>
+                <div class="shot-wrap"><img class="shot" src="prints/s07_catalogo.png" alt="Catálogo do MLX Pilot com busca de modelos GGUF no Hugging Face" /></div>
+            </div>
+            <!-- Card 3: Backend Switcher -->
+            <div class="demo-card blue-accent">
+                <div class="card-text">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Seleção de Backend</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">HOT-SWAPPABLE PROVIDERS</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00d9ff]">
+                        <i class="fas fa-toggle-on"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Capacidade de alternar dinamicamente entre motores de inferência (MLX, Llama.cpp, Ollama) sem
+                    reiniciar a aplicação.
+                </p>
+                </div>
+                <div class="shot-wrap"><img class="shot" src="prints/s07_backends.png" alt="Inicialização do MLX Pilot com status dos providers locais" /></div>
+            </div>
+            <!-- Card 4: Local Execution -->
+            <div class="demo-card green-accent">
+                <div class="card-text">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Execução Local</h3>
+                        <p class="text-gray-500 text-xs tech-font mt-1">PRIVACY &amp; OFFLINE FIRST</p>
+                    </div>
+                    <div class="icon-wrapper text-[#00ff41]">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-2">
+                    Ambiente totalmente isolado que garante que nenhum dado do chat ou telemetria deixe a máquina local
+                    do usuário.
+                </p>
+                </div>
+                <div class="shot-wrap"><img class="shot" src="prints/s07_local.png" alt="Status do workflow estilo n8n e conexões locais do MLX Pilot, todas em 127.0.0.1" /></div>
+            </div>
+            </div>
+        <!-- Footer -->
+        <div
+            class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
+            <div>
+                SYSTEM STATUS: <span class="text-[#00ff41]">OPERATIONAL</span>
+            </div>
+            <div class="flex gap-4">
+                <span><i class="fab fa-rust mr-1"></i>RUST</span>
+                <span><i class="fab fa-js mr-1"></i>TAURI</span>
+                <span><i class="fab fa-apple mr-1"></i>METAL</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

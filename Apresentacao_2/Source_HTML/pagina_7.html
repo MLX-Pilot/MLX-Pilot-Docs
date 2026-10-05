@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MLX-Pilot - Demonstração Funcional</title>
+    <title>MLX-Pilot - Diferenciais Técnicos</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&amp;family=Roboto+Mono:wght@400;500;700&amp;display=swap"
@@ -27,294 +27,278 @@
             font-family: 'Roboto Mono', monospace;
         }
 
-        /* SVG Pattern Background to avoid gradients */
-        .bg-pattern {
+        /* Background Pattern */
+        .bg-tech {
             background-color: #050505;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a1a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image:
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        .card-grid {
+        /* Feature Card */
+        .feature-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(25, 25, 25, 0.8);
+            border-color: #444;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-card.accent-green:hover {
+            border-color: #00ff41;
+        }
+
+        .feature-card.accent-green:hover::before {
+            background: #00ff41;
+            box-shadow: 0 0 15px #00ff41;
+        }
+
+        .feature-card.accent-green .icon-box {
+            color: #00ff41;
+            border-color: rgba(0, 255, 65, 0.2);
+        }
+
+        .feature-card.accent-blue:hover {
+            border-color: #00d9ff;
+        }
+
+        .feature-card.accent-blue:hover::before {
+            background: #00d9ff;
+            box-shadow: 0 0 15px #00d9ff;
+        }
+
+        .feature-card.accent-blue .icon-box {
+            color: #00d9ff;
+            border-color: rgba(0, 217, 255, 0.2);
+        }
+
+        .feature-card.accent-white:hover {
+            border-color: #ffffff;
+        }
+
+        .feature-card.accent-white:hover::before {
+            background: #ffffff;
+            box-shadow: 0 0 15px #ffffff;
+        }
+
+        .feature-card.accent-white .icon-box {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .icon-box {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tech decorative elements */
+        .corner-decoration {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .corner-decoration {
+            border-color: inherit;
+            width: 20px;
+            height: 20px;
+        }
+
+        .top-right {
+            top: 8px;
+            right: 8px;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .bottom-left {
+            bottom: 8px;
+            left: 8px;
+            border-top: none;
+            border-right: none;
+        }
+
+        .code-snippet {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: #666;
+            margin-top: auto;
+            border-top: 1px solid #222;
+            padding-top: 12px;
+            opacity: 0.7;
+        }
+
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 16px;
             height: 100%;
         }
 
-        .demo-card {
-            background-color: #0f0f0f;
-            border: 1px solid #222;
-            border-radius: 8px;
-            padding: 20px;
-            position: relative;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .demo-card:hover {
-            border-color: #333;
-            transform: translateY(-2px);
-            background-color: #111;
-        }
-
-        .demo-card.green-accent:hover {
-            border-color: #00ff41;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-        }
-
-        .demo-card.blue-accent:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.1);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .icon-wrapper {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .green-text {
-            color: #00ff41;
-        }
-
-        .blue-text {
-            color: #00d9ff;
-        }
-
-        .bg-green {
-            background-color: #00ff41;
-        }
-
-        .bg-blue {
-            background-color: #00d9ff;
-        }
-
-        .ui-mockup {
-            background-color: #050505;
-            border: 1px solid #222;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: auto;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 11px;
-            color: #aaa;
-            position: relative;
-        }
-
-        .ui-mockup::before {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 30px;
-            height: 4px;
-            background-color: #333;
-            border-radius: 2px;
-        }
-
-        /* Mockup specific styles */
-        .typing-cursor::after {
-            content: '▋';
-            animation: blink 1s step-end infinite;
-            color: #00ff41;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .progress-track {
-            height: 6px;
-            background-color: #222;
-            border-radius: 3px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 3px;
-        }
-
-        .tag-badge {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 9px;
-            margin-right: 4px;
-            background-color: #222;
-            border: 1px solid #333;
-        }
-
-        .tag-badge.active {
-            background-color: rgba(0, 255, 65, 0.2);
-            border-color: #00ff41;
-            color: #00ff41;
-        }
-
-        .offline-status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #00ff41;
-            font-size: 10px;
-            margin-top: 4px;
+        .grid-span-2 {
+            grid-column: span 2;
         }
     </style>
 </head>
 
 <body>
-    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-pattern">
+    <div class="w-full h-full relative flex flex-col px-12 pt-8 pb-32 bg-tech">
+        <!-- Decorative Background Elements -->
         <!-- Header -->
         <div class="relative z-10 mb-8 flex justify-between items-end border-b border-gray-800 pb-6">
             <div>
                 <div class="flex items-center gap-3 mb-2">
                     <span class="text-[#00d9ff] tech-font text-xs font-bold tracking-widest uppercase">
-                        <i class="fas fa-play-circle mr-2"></i>Live Demo Features
+                        <i class="fas fa-code-branch mr-2"></i>Core Features
                     </span>
                 </div>
-                <h1 class="text-4xl font-bold text-white tracking-tight">
-                    Demonstração <span class="text-gray-500">Funcional</span>
+                <h1 class="text-5xl font-bold text-white tracking-tight">
+                    Diferenciais <span class="text-[#00ff41]">Técnicos</span>
                 </h1>
             </div>
             <div class="text-right">
                 <p class="text-gray-400 text-sm max-w-md leading-relaxed tech-font">
-                    CURRENT_BUILD: v0.8.2-alpha
+                    SYSTEM_CAPABILITIES::V1.0 // INNOVATION_MODULE
                 </p>
             </div>
         </div>
-        <!-- Main Grid Content -->
-        <div class="flex-1 card-grid z-10">
-            <!-- Card 1: Chat Streaming -->
-            <div class="demo-card green-accent">
-                <div class="card-header">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Chat com Streaming</h3>
-                        <p class="text-gray-500 text-xs tech-font mt-1">REAL-TIME TOKEN GENERATION</p>
-                    </div>
-                    <div class="icon-wrapper text-[#00ff41]">
-                        <i class="fas fa-comments"></i>
-                    </div>
+        <!-- Main Content: Grid Layout -->
+        <div class="flex-1 z-10 grid-container pb-2">
+            <!-- Item 1: Arquitetura Modular -->
+            <div class="feature-card accent-green">
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="icon-box">
+                    <i class="fas fa-cubes"></i>
                 </div>
-                <p class="text-gray-400 text-sm mb-2">
-                    Interface de chat responsiva utilizando Server-Sent Events (SSE) para exibir tokens assim que são
-                    inferidos, sem latência perceptível.
+                <h3 class="text-xl font-bold text-white mb-2">Arquitetura Modular</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Sistema plugável onde cada componente (UI, Core, Providers) opera de forma desacoplada, facilitando
+                    manutenção e upgrades.
                 </p>
-                <div class="ui-mockup border-l-2 border-l-[#00ff41]">
-                    <div class="text-[#00ff41] mb-1">User: Explique Rust em uma frase.</div>
-                    <div class="text-gray-300">
-                        Bot: Rust é uma linguagem de sistemas focada em segurança e concorrência.<span
-                            class="typing-cursor"></span>
-                    </div>
-                    <div class="mt-2 text-[9px] text-gray-600 flex justify-between">
-                        <span>TOK/S: 45.2</span>
-                        <span>LATENCY: 12ms</span>
-                    </div>
+                <div class="code-snippet">
+                    trait Provider { fn infer(&amp;self, prompt: str); }
                 </div>
             </div>
-            <!-- Card 2: Download Manager -->
-            <div class="demo-card blue-accent">
-                <div class="card-header">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Model Manager</h3>
-                        <p class="text-gray-500 text-xs tech-font mt-1">HUGGING FACE INTEGRATION</p>
-                    </div>
-                    <div class="icon-wrapper text-[#00d9ff]">
-                        <i class="fas fa-cloud-download-alt"></i>
-                    </div>
+            <!-- Item 2: Multi-Provider -->
+            <div class="feature-card accent-blue">
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="icon-box">
+                    <i class="fas fa-network-wired"></i>
                 </div>
-                <p class="text-gray-400 text-sm mb-2">
-                    Catálogo integrado para busca e download direto de modelos (GGUF/MLX) com verificação automática de
-                    hash e compatibilidade.
+                <h3 class="text-xl font-bold text-white mb-2">Multi-Provider</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Camada de abstração unificada que permite alternar entre backends (MLX, Llama, Ollama) em tempo de
+                    execução sem reiniciar.
                 </p>
-                <div class="ui-mockup">
-                    <div class="flex justify-between text-white text-[10px] mb-1">
-                        <span>Llama-3-8B-Instruct-v0.2.Q4_K_M.gguf</span>
-                        <span>3.8GB / 5.2GB</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill bg-blue" style="width: 73%;"></div>
-                    </div>
-                    <div class="mt-2 flex justify-between text-[9px] text-gray-500">
-                        <span>SOURCE: HF_HUB</span>
-                        <span class="text-[#00d9ff]">DOWNLOADING...</span>
-                    </div>
+                <div class="code-snippet">
+                    let backend = ProviderFactory::create(config.type);
                 </div>
             </div>
-            <!-- Card 3: Backend Switcher -->
-            <div class="demo-card blue-accent">
-                <div class="card-header">
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Seleção de Backend</h3>
-                        <p class="text-gray-500 text-xs tech-font mt-1">HOT-SWAPPABLE PROVIDERS</p>
-                    </div>
-                    <div class="icon-wrapper text-[#00d9ff]">
-                        <i class="fas fa-toggle-on"></i>
-                    </div>
+            <!-- Item 3: Streaming SSE -->
+            <div class="feature-card accent-green">
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="icon-box">
+                    <i class="fas fa-bolt"></i>
                 </div>
-                <p class="text-gray-400 text-sm mb-2">
-                    Capacidade de alternar dinamicamente entre motores de inferência (MLX, Llama.cpp, Ollama) sem
-                    reiniciar a aplicação.
+                <h3 class="text-xl font-bold text-white mb-2">Streaming Real-time</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Implementação eficiente de Server-Sent Events (SSE) para entrega de tokens com latência mínima na
+                    interface do usuário.
                 </p>
-                <div class="ui-mockup">
-                    <div class="mb-2 text-white">Select Provider:</div>
-                    <div class="flex gap-2">
-                        <span class="tag-badge active">MLX (Apple)</span>
-                        <span class="tag-badge">llama.cpp</span>
-                        <span class="tag-badge">Ollama</span>
-                    </div>
-                    <div class="mt-3 text-[9px] text-[#00ff41]">
-                        &gt; Provider switched successfully.<br />
-                        &gt; Loaded 8B parameters in VRAM.
-                    </div>
+                <div class="code-snippet">
+                    response.stream().map(|chunk| Event::default().data(chunk))
                 </div>
             </div>
-            <!-- Card 4: Local Execution -->
-            <div class="demo-card green-accent">
-                <div class="card-header">
+            <!-- Item 4: Hugging Face (Wider) -->
+            <div class="feature-card accent-white grid-span-2 flex-row gap-6 items-center">
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="flex flex-col justify-between h-full flex-1">
                     <div>
-                        <h3 class="text-xl font-bold text-white">Execução Local</h3>
-                        <p class="text-gray-500 text-xs tech-font mt-1">PRIVACY &amp; OFFLINE FIRST</p>
-                    </div>
-                    <div class="icon-wrapper text-[#00ff41]">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                </div>
-                <p class="text-gray-400 text-sm mb-2">
-                    Ambiente totalmente isolado que garante que nenhum dado do chat ou telemetria deixe a máquina local
-                    do usuário.
-                </p>
-                <div class="ui-mockup">
-                    <div class="flex justify-between items-center">
-                        <span class="text-white">Network Status</span>
-                        <div class="offline-status">
-                            <i class="fas fa-wifi"></i> DISCONNECTED
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box !mb-0">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Catálogo Hugging Face</h3>
                         </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Integração nativa com a API do Hugging Face para busca, filtragem e download automatizado de
+                            modelos GGUF e MLX diretamente pela interface.
+                        </p>
                     </div>
-                    <div class="mt-2 border-t border-[#333] pt-2">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 rounded-full bg-[#00ff41]"></div>
-                            <span class="text-white text-[10px]">Local Server: Port 3000</span>
-                        </div>
-                        <div class="text-[9px] text-gray-500 mt-1">0 External Requests Blocked</div>
+                    <div class="code-snippet mt-4">
+                        GET https://huggingface.co/api/models?search=llama-3&amp;filter=gguf
                     </div>
+                </div>
+                <div
+                    class="h-full w-1/3 bg-black bg-opacity-30 rounded border border-gray-800 p-3 tech-font text-[10px] text-gray-500 overflow-hidden relative">
+                    <div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-green-500"></div>
+                    <p>&gt; searching models...</p>
+                    <p class="text-[#00d9ff]">&gt; found: llama-3-8b-instruct</p>
+                    <p class="text-[#00d9ff]">&gt; found: mistral-7b-v0.3</p>
+                    <p>&gt; downloading metadata...</p>
+                    <p class="text-gray-600">... done (23ms)</p>
+                </div>
+            </div>
+            <!-- Item 5: Agente Autônomo -->
+            <div class="feature-card accent-blue">
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="icon-box">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Base para Agentes</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Estrutura preparada para loop de feedback e tool-use, pavimentando o caminho para agentes autônomos
+                    locais.
+                </p>
+                <div class="code-snippet">
+                    agent.think().act().observe();
                 </div>
             </div>
         </div>
@@ -322,12 +306,12 @@
         <div
             class="relative z-10 flex justify-between items-center text-xs text-gray-600 tech-font border-t border-gray-900 pt-4 mt-2">
             <div>
-                SYSTEM STATUS: <span class="text-[#00ff41]">OPERATIONAL</span>
+                <span class="text-[#00ff41]">●</span> STABLE
+                <span class="mx-2">|</span>
+                <span class="text-[#00d9ff]">●</span> EXPERIMENTAL
             </div>
-            <div class="flex gap-4">
-                <span><i class="fab fa-rust mr-1"></i>RUST</span>
-                <span><i class="fab fa-js mr-1"></i>TAURI</span>
-                <span><i class="fab fa-apple mr-1"></i>METAL</span>
+            <div>
+                TECH_STACK // RUST_TAURI_AXUM
             </div>
         </div>
     </div>
